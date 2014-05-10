@@ -2,105 +2,88 @@ var objectID = require('mongodb').ObjectID;
 var request = require('request');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var db = require('../db');
 
 //mongoose
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-  console.log('mongoose');
-});
 
-module.exports.createTalk = function(req, res) {
-    var talk = {
-        topic: req.body.topic,
-        speaker: req.body.speaker,
-        category: req.body.category,
-        description: req.body.description
-    }
-    res.send('talk', talk);
-    console.log('talk', talk);
-};
 //create schema
 var TalkSchema = new Schema({
 
-    id: { type: String, required: true},
+    id: { type: String},
     topic: { type: String, required: true},
     status: { type: Boolean},
     speaker: { type: String, required: true},
     category: { type: String, required: true},
     description: { type: String, required: true},
-<<<<<<< HEAD
     vote: {
         type: Number,
         id: []
     },
-=======
-    vote: { type: Number, required: true},
-    imageURL: { type: String, required: true}
->>>>>>> 25141ff8f6a57ae5a3df881bb090b2a107490b71
+    imageURL: { type: String}
 });
 //create a model
 var Talk = mongoose.model('Talk', TalkSchema);
 
 //save into mongoDB
-module.exports = function(db) {
+//module.exports = function(db) {
 
-    var mongoose = require('mongoose');
-    var Talk = mongoose.model('Talk');
+var mongoose = require('mongoose');
+var Talk = mongoose.model('Talk');
 
-    function list(data, callback) {
-        Talk.find(function (err, talks, count){
-            if(err) return console.log(err);
-            console.error(err);
-        });
-    }
+exports.list = function(data, callback) {
+    Talk.find(function (err, talks, count){
+        if(err) return console.log(err);
+        console.error(err);
+    });
+}
 
-    function create(data, callback) {
+exports.create = function(data, callback) {
 //create documents
 //db.collectionName.save({key: value});
-        var talk = new Talk({
-            topic: talk.topic,
-            speaker: talk.speaker,
-            category: talk.category,
-            description: talk.description
-        });
-        talk.save(function (err, talk){
-            if(err) return console.log(err);
-            console.error(err);
-        });
-    };
-    function show(data, callback) {
+    console.log('created');
+    var talk = new Talk({
+        topic: data.topic,
+        speaker: data.speaker,
+        category: data.category,
+        description: data.description
+    });
+    talk.save(function (err, talk){
+        if(err) return console.error(err);
+        console.log(talk);
+    });
+};
+exports.show = function(data, callback) {
 
-        Talk.findById( { topic: 'hihi'}, function (err, talk) {
-            if(err) return console.log(err);
-            console.error(err);
-        });
-    }
+    Talk.findById( { topic: 'hihi'}, function (err, talk) {
+        if(err) return console.log(err);
+        console.error(err);
+    });
+}
 
 //     function update(data, callback)
 // // update place & votes(remember ID in the array)
 
 //     )};
 
-    function destroy(data, callback) {
-        cDomain.remove(data.get, function(err, removed) {
-            if (err) {
-                callback(err, null);
-            }else{
-                cb(null, removed);
-            }
-        });
-    }
+function destroy(data, callback) {
+    cDomain.remove(data.get, function(err, removed) {
+        if (err) {
+            callback(err, null);
+        }else{
+            cb(null, removed);
+        }
+    });
+}
 
-    return {
-        'list': list,
-        'create': create,
-        'update': update,
-        'destroy': destroy,
-        'show': show
-    };
-};
+// return {
+//     'list': list,
+//     'create': create,
+//     'update': update,
+//     'destroy': destroy,
+//     'show': show
+// };
+//};
 
 
 

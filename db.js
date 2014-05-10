@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost:27017/CCSP');
 
 // Error handler
 mongoose.connection.on('error', function (err) {
@@ -15,4 +15,4 @@ mongoose.connection.once('open', function () {
 });
 
 // Require models schema
-require('./routes/talkß');
+require('./routes/talk');
