@@ -32,8 +32,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', index.load);
-app.post('/create', talk.create);
-app.post('/update', talk.update);
+// app.post('/create', talk.create);
+// app.post('/update', talk.update);
 app.get('/search', index.search);
 //add the url of your function
 

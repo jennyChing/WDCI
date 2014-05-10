@@ -1,5 +1,6 @@
 exports.load = function(req, res){
 	// home page to
+    res.render('front_layout');
 };
 
 exports.search = function(db){
