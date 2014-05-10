@@ -11,8 +11,8 @@ var TalkSchema = new Schema({
     speaker: { type: String, required: true},
     category: { type: String, required: true},
     description: { type: String, required: true},
-    vote: { type: Number, required: true}
-
+    vote: { type: Number, required: true},
+    imageURL: { type: String, required: true}
 });
 
 // module.exports = function(db) {
