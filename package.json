@@ -1,0 +1,22 @@
+{
+  "name": "trytalk",
+  "version": "0.0.0",
+  "description": "CCSP final project",
+  "main": "index.js",
+  "scripts": {
+    "test": "Y"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jennyChing/TryTalk.git"
+  },
+  "keywords": [
+    "tryTalk"
+  ],
+  "author": "CCSP",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/jennyChing/TryTalk/issues"
+  },
+  "homepage": "https://github.com/jennyChing/TryTalk"
+}
