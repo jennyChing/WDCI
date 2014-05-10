@@ -1,6 +1,7 @@
 var express = require('express');
 var routes = require('./routes');
 var index = require('./routes/index');
+var talk = require('./routes/talk');
 var http = require('http');
 var path = require('path');
 var portNum = process.env.PORT || 3000;
@@ -31,7 +32,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', index.load);
-app.post('/create', index.create);
+app.post('/create', talk.create);
+app.post('/update', talk.update);
 app.get('/search', index.search);
 //add the url of your function
 

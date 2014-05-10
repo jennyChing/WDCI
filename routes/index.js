@@ -1,12 +1,5 @@
 exports.load = function(req, res){
-	// home page to 
-};
-
-exports.create = function(db){
-	//create collection 
-	return function(req, res){
-
-	}
+	// home page to
 };
 
 exports.search = function(db){
