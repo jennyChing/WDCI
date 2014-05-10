@@ -30,10 +30,15 @@ var TalkSchema = new Schema({
     speaker: { type: String, required: true},
     category: { type: String, required: true},
     description: { type: String, required: true},
+<<<<<<< HEAD
     vote: {
         type: Number,
         id: []
     },
+=======
+    vote: { type: Number, required: true},
+    imageURL: { type: String, required: true}
+>>>>>>> 25141ff8f6a57ae5a3df881bb090b2a107490b71
 });
 //create a model
 var Talk = mongoose.model('Talk', TalkSchema);
