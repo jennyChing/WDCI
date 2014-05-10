@@ -200,8 +200,9 @@ label.error{
 textarea, input { outline: none; }
 .sign-up-form{
 	margin-top:20px;
-	margin-bottom:120px;
+	margin-bottm:120px;
 	position:relative;
+	width: 300px;
 }
 .sign-up-form label.error{
 	position:absolute;
