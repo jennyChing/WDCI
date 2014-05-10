@@ -23,23 +23,23 @@ html
     .container
       header#header
         h1#logo
-          a(href='https://www.meepshop.com') 踹講 TryTalk
+          a(href='/#main') 踹講 TryTalk
         nav#nav
           ul
             li
-              a(href='/domain#main') 搜尋
+              a(href='/#main') 搜尋
             li
-              a(href='/domain#talks') 講座
+              a(href='/#talks') 講座
             li
-              a(href='/domain#faq') 問題
+              a(href='/#faq') 問題
             li
-              a(href='/domain#pricing') 價錢
+              a(href='/#pricing') 價錢
 
             - if (!user)
               li
-                a(href='/domain#login') 登入管理
+                a(href='/#login') 登入管理
               li
-                a(href='/domain#signup') 註冊
+                a(href='/#signup') 註冊
             - else
               li
                 p=user.email
@@ -60,3 +60,29 @@ html
       header
         h1 Create your own talks
         h4 想聽誰的講座？
+      .column.medium-8.small-10.small-centered
+        form#subForm.sign-up-form.clearfix
+          input#topic(type='text', name='topic', placeholder='輸入講座主題')
+          input#speaker(type='text', name='speaker', placeholder='輸入演講者')
+          input#category(type='text', name='category', placeholder='輸入演講者類別')
+          input#description(type='text', name='description', placeholder='講座資訊')
+          input#submit.button.radius(type='button', value='提交', tabindex='3')
+    .row
+      header
+        h1 What is hot now?
+        h4 熱門的講座
+      .column.medium-8.small-10.small-centered
+
+
+  script.
+
+    $('#submit').click(function(){
+      $.post('/createTalk',{
+        topic: $('#topic').val(),
+        speaker: $('#speaker').val(),
+        category: $('#category').val(),
+        description: $('#description').val()
+      }, function(msg){
+        console.log(topic);
+      });
+    });
