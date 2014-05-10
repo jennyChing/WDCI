@@ -1,3 +1,7 @@
+exports.index = function(req, res){
+	res.render( 'index', { title : 'Try Talk everything!' });
+}
+
 exports.load = function(req, res){
 	// home page to
     res.render('front_layout');
@@ -5,7 +9,7 @@ exports.load = function(req, res){
 
 exports.search = function(db){
 	return function(req, res){
-
+		
 	}
 };
 

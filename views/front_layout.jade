@@ -8,6 +8,7 @@ html
     meta(name='keywords', content='domain, meepShop, url, 網域')
 
     link(rel='stylesheet', href='/css/normalize.css')
+    link(rel='stylesheet', href='/css/bootstrap1.css')
     link(rel='stylesheet', href='/css/foundation.min.css')
     link(rel='stylesheet', href='/css/front-nav.css')
     link(rel='stylesheet', href='/css/style.css')
@@ -51,10 +52,46 @@ html
         h1 Find a talk and vote for it!
         h4 快速查詢講座
 
+        //- div(style='width:200px;height:260px;position:relative;')
+        //-   img(style='width:200px; height:200px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
+        //-   div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;')
+        //-     東方神祕力量
+        //-   button.btn.btn-info(style='left: 34%;', type='button') Vote
+        //-   div(style='text-align: center; padding-top: 10px;') 1234
+
+
       .column.medium-8.small-10.small-centered
         form#subForm.sign-up-form.clearfix
           input#domain(type='text', name='domain', placeholder='欲查詢的講座', tabindex='1', autofocus='autofocus')
           input#search.button.radius(type='button', value='SEARCH', tabindex='3')
+        
+      div(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;')
+        img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
+        div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;')
+          東方神祕力量
+        div(style='text-align:center; font-size:14px; color:gray;  padding-top:10px;') 李嗣涔      
+        button.btn.btn-info(style='left: 34%;', type='button') Vote
+        div(style='text-align: center; padding-top: 10px;') 1234    
+
+      div(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;')
+        img(style='width:200px; height:200px;border-radius:30px;', src='http://www.bottomlineperformance.com/wp-content/uploads/2012/12/facebook-college-hackathon-done1.png',alt='hello!' class='img-rounded;').
+        div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;') What is Hackathon?
+        div(style='text-align:center; font-size:14px; color:gray;  padding-top:10px;') Mike Chen
+        button.btn.btn-info(style='left: 34%;', type='button') Vote
+        div(style='text-align: center; padding-top: 10px;') 38419       
+
+      div(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;')
+        img(style='width:200px; height:200px;border-radius:30px;', src='http://img2.178.com/acg1/201312/180324121767/180327033345.jpg',alt='hello!' class='img-rounded;').
+        div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;') 第一次打政府臉就上手
+        div(style='text-align:center; font-size:14px; color:gray;  padding-top:10px;') 童盈超
+        button.btn.btn-info(style='left: 34%;', type='button') Vote
+        div(style='text-align: center; padding-top: 10px;') 68264       
+
+      //- div(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;')
+      //-   img(style='width:200px; height:200px;border-radius:30px;', src='http://www.bottomlineperformance.com/wp-content/uploads/2012/12/facebook-college-hackathon-done1.png',alt='hello!' class='img-rounded;').
+      //-   div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;') What is Hackathon?
+      //-   button.btn.btn-info(style='left: 34%;', type='button') Vote
+      //-   div(style='text-align: center; padding-top: 10px;') 999999       
     section#talks
     .row
       header
