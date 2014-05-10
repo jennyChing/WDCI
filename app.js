@@ -35,6 +35,7 @@ app.get('/', index.load);
 // app.post('/create', talk.create);
 // app.post('/update', talk.update);
 app.get('/search', index.search);
+app.get('/load', index.load);
 //add the url of your function
 
 http.createServer(app).listen(app.get('port'), function(){
