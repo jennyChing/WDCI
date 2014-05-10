@@ -26,6 +26,7 @@ int main(){
 	int over = 10;
 
 	while(1){
+		
 		cout << "id: ";
 		getline(cin,id);
 		cout << "topic: ";
@@ -47,7 +48,7 @@ int main(){
 
 		cout << "keep input? : ";
 		scanf("%d",&over);
-		
+
 		
 		printTryTalkCollection(id,topic,status,speaker,category,place,description,vote,imageURL);
 		if(over == 0)
@@ -67,7 +68,7 @@ void printTryTalkCollection(string id, string topic, string status, string speak
 	align(1);
 	fprintf(fp, "\"topic\" : \"%s\",\n", topic.c_str());
 	align(1);
-	fprintf(fp, "\"status\" : \"%s\",\n", status.c_str());
+	fprintf(fp, "\"status\" : %s,\n", status.c_str());
 	align(1);
 	fprintf(fp, "\"speaker\" : \"%s\",\n", speaker.c_str());	
 	align(1);
@@ -77,7 +78,7 @@ void printTryTalkCollection(string id, string topic, string status, string speak
 	align(1);
 	fprintf(fp, "\"description\" : \"%s\",\n", description.c_str());		
 	align(1);
-	fprintf(fp, "\"vote\" : \"%s\",\n", vote.c_str());	
+	fprintf(fp, "\"vote\" : %s,\n", vote.c_str());	
 	align(1);
 	fprintf(fp, "\"imageURL\" : \"%s\"\n", imageURL.c_str());	
 

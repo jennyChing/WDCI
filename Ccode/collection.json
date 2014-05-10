@@ -1,11 +1,22 @@
 {
     "id" : "11111a",
     "topic" : "東方神祕力量",
-    "status" : "1",
+    "status" : 1,
     "speaker" : "李嗣涔",
     "category" : "Supernatural",
     "place" : "NTU everywhere",
     "description" : "今天凌晨有網友在批踢踢板上PO文，指稱他在選課網看到一門課「東方神秘力量」，學分數為100，授課教師是李嗣涔，開課系所是電機工程系；上課時間為週一到週五的每1堂課，上課地點包括醉月湖湖心、管院頂樓、傅鐘地下室、生態池池底等，疑似惡搞的內容引發網友熱烈討論。",
-    "vote" : "99239",
+    "vote" : 99239,
     "imageURL" : "http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg"
+}
+{
+    "id" : "1234aa",
+    "topic" : "What is Hackathon?",
+    "status" : 1,
+    "speaker" : "Mark",
+    "category" : "tech",
+    "place" : "Facebook Office",
+    "description" : "A hackathon (also known as a hack day, hackfest or codefest) is an event in which computer programmers and others involved in software development, including graphic designers, interface designers and project managers, collaborate intensively on software projects.[1] Occasionally, there is a hardware component as well. Hackathons typically last between a day and a week. Some hackathons are intended simply for educational or social purposes, although in many cases the goal is to create usable software. Hackathons tend to have a specific focus, which can include the programming language used, the operating system, an application, an API, or the subject and the demographic group of the programmers. In other cases, there is no restriction on the type of software being created.",
+    "vote" : 129472,
+    "imageURL" : "http://www.bottomlineperformance.com/wp-content/uploads/2012/12/facebook-college-hackathon-done1.png"
 }
