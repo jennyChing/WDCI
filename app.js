@@ -7,8 +7,8 @@ var path = require('path');
 var portNum = process.env.PORT || 3000;
 var mongo = require('mongoskin');
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost:27017/robotserver';
-var db = mongo.db(mongoUri, {native_parser:true});
-
+//var db = mongo.db(mongoUri, {native_parser:true});
+var db = require('./db');
 var app = express();
 
 // all environments
@@ -32,13 +32,27 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', index.load);
-// app.post('/create', talk.create);
-app.post('/createTalk', talk.createTalk);
+//app.post('/create', talk.create);
+app.post('/createTalk', createTalk);
 // app.post('/update', talk.update);
 app.get('/search', index.search);
 app.get('/load', index.load);
 //add the url of your function
+app.post('/show', talk.show);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+
+function createTalk (req, res) {
+    var data = {
+        topic: req.body.topic,
+        speaker: req.body.speaker,
+        category: req.body.category,
+        description: req.body.description
+    };
+    talk.create(data);
+    res.send('data', data);
+    console.log('data', data);
+};

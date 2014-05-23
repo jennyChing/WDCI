@@ -20,7 +20,11 @@
   },
   "homepage": "https://github.com/jennyChing/TryTalk",
   "dependencies": {
+    "mongodb": "*",
+    "request": "*",
+    "mongoskin": "*",
     "mongoose": "~3.8.9",
-    "express": "3.4.8"
+    "express": "3.4.8",
+    "jade": "*"
   }
 }
