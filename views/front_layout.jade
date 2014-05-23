@@ -106,27 +106,39 @@ html
           h1 What is hot now?
           h4 熱門的講座
         .column.medium-12.small-10.small-centered
-          div(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;')
+          .talkPicture
             img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
-            div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;')
+            .talkTitle
               東方神祕力量
-            div(style='text-align:center; font-size:14px; color:gray;  padding-top:10px;') 李嗣涔      
+            .talkSpeaker 李嗣涔      
             button.btn.btn-info(, type='button') Vote
-            div(style='text-align: center; padding-top: 10px;') 1234    
+            .talkNumberOfVotes 1234    
 
-          div(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;')
+          .talkPicture
             img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
-            div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;') What is Hackathon?
-            div(style='text-align:center; font-size:14px; color:gray;  padding-top:10px;') 金子芮
+            .talkTitle What is Hackathon?
+            .talkSpeaker 金子芮
             button.btn.btn-info(, type='button') Vote
-            div(style='text-align: center; padding-top: 10px;') 38419       
+            .talkNumberOfVotes 38419       
 
-          div(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;')
+          .talkPicture
             img(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
-            div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;') 第一次打政府臉就上手
-            div(style='text-align:center; font-size:14px; color:gray;  padding-top:10px;') 童盈超
+            .talkTitle 第一次打政府臉就上手
+            .talkSpeaker 童盈超
             button.btn.btn-info(, type='button') Vote
-            div(style='text-align: center; padding-top: 10px;') 68264   
+            .talkNumberOfVotes 68264   
+
+    section#category
+      .row
+        header
+          h1 Now you can vote
+          h4 你可以選擇支持下列已建立的講座 
+          //- .column.medium-12.small-10.small-centered
+          .talkCategoryButton
+            button.wid40.btn.btn-primary(type="button") 科技
+            button.wid40.btn.btn-success(type="button") 生活
+            button.wid40.btn.btn-warning(type="button") 其他
+            
 
 
   script.
