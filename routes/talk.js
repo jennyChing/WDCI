@@ -3,6 +3,8 @@ var request = require('request');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var db = require('../db');
+var express = require('express');
+var app = express();
 
 //mongoose
 
@@ -60,17 +62,19 @@ exports.create = function(req, res) {
         console.log(talk);
     });
 };
-exports.show = function(data, callback) {
+exports.show = function(req, res) {
 
     Talk.find( { topic: '東方神祕力量'}, function (err, talk) {
         if(err) {
             console.error(err);
         }
         console.log('talk:'+talk);
+        res.send(talk);
         // callback();
         //console.error(err);
     });
 };
+
 
 
 exports.update = function(req, res){
@@ -79,6 +83,7 @@ exports.update = function(req, res){
         // update place & votes(remember ID in the array)
     });
 };
+
 
 
 // return {

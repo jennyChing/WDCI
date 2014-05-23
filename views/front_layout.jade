@@ -70,17 +70,17 @@ html
 
         .column.medium-10.small-10.small-centered
           form#subForm.sign-up-form.clearfix
-            input#domain(type='text', name='domain', placeholder='欲查詢的講座', tabindex='1', autofocus='autofocus')
+            input#talk(type='text', name='talk', placeholder='欲查詢的講座', tabindex='1', autofocus='autofocus')
             input#search.button.radius(type='button', value='SEARCH', tabindex='3')
 
         div#QQ(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;display:none;')
           img(style='width:200px; height:200px;border-radius:30px;', src='http://history.n.yam.com/news_photo/ebcnews/images/201106/M20110609914653.jpg',alt='hello!' class='img-rounded;').
           div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;')  請問哪裡還有22k的公司？
-          div(style='text-align:center; font-size:14px; color:gray;  padding-top:10px;') 郭台銘    
+          div(style='text-align:center; font-size:14px; color:gray;  padding-top:10px;') 郭台銘
           button.btn.btn-info(, type='button') Vote
-          div(style='text-align: center; padding-top: 10px;') 1                    
+          div(style='text-align: center; padding-top: 10px;') 1
+        p#response=talk.topic
 
-            
 
       //- div(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;')
       //-   img(style='width:200px; height:200px;border-radius:30px;', src='http://www.bottomlineperformance.com/wp-content/uploads/2012/12/facebook-college-hackathon-done1.png',alt='hello!' class='img-rounded;').
@@ -88,7 +88,7 @@ html
       //-   button.btn.btn-info(style='left: 34%;', type='button') Vote
       //-   div(style='text-align: center; padding-top: 10px;') 999999
     section#talks
-    
+
       .row
         header
           h1 Create your own talks
@@ -109,35 +109,35 @@ html
             img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
             .talkTitle
               東方神祕力量
-            .talkSpeaker 李嗣涔      
+            .talkSpeaker 李嗣涔
             button.btn.btn-info(, type='button') Vote
-            .talkNumberOfVotes 1234    
+            .talkNumberOfVotes 1234
 
           .talkPicture
             img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
             .talkTitle What is Hackathon?
             .talkSpeaker 金子芮
             button.btn.btn-info(, type='button') Vote
-            .talkNumberOfVotes 38419       
+            .talkNumberOfVotes 38419
 
           .talkPicture
             img(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
             .talkTitle 第一次打政府臉就上手
             .talkSpeaker 童盈超
             button.btn.btn-info(, type='button') Vote
-            .talkNumberOfVotes 68264   
+            .talkNumberOfVotes 68264
 
     section#category
       .row
         header
           h1 Now you can vote
-          h4 你可以選擇支持下列已建立的講座 
+          h4 你可以選擇支持下列已建立的講座
           //- .column.medium-12.small-10.small-centered
           .talkCategoryButton
             button.wid40.btn.btn-primary(type="button") 科技
             button.wid40.btn.btn-success(type="button") 生活
             button.wid40.btn.btn-warning(type="button") 其他
-            
+
 
 
   script.
@@ -155,9 +155,10 @@ html
     });
     $('#search').click(function(){
       $('#QQ').show();
-      $.get('/search',{
-      }, function(msg){
-        console.log('haha');
+      $.post('/show',{
+      }, function(res){
+        console.log('haha', res);
+        $('')
       });
     });
-    
+
