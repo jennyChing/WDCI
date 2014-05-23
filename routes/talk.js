@@ -55,9 +55,11 @@ exports.create = function(data, callback) {
 };
 exports.show = function(data, callback) {
 
-    Talk.findById( { topic: 'hihi'}, function (err, talk) {
-        if(err) return console.log(err);
-        console.error(err);
+    Talk.find( { topic: '東方神祕力量'}, function (err, talk) {
+        if(err) return console.error(err);
+        console.log('talk:'+talk);
+        callback(talk);
+        //console.error(err);
     });
 }
 
