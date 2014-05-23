@@ -325,3 +325,38 @@ section {
 
 }
 
+.talkPicture{
+  width:200px;
+  height:260px;
+  position:relative;
+  float:left;
+  margin-left:5%;
+}
+
+.talkTitle{
+  text-align:center; 
+  font-size:16px; 
+  color:#5B5B5B;  
+  padding-top:10px;
+}
+
+.talkSpeaker{
+  text-align:center; 
+  font-size:14px; 
+  color:gray;  
+  padding-top:10px;
+}
+
+.talkNumberOfVotes{
+  text-align: center; 
+  padding-top: 10px;
+}
+
+#category{
+  /*background: url('../img/one.jpg');*/
+}
+
+.wid40{
+  width: 100px;
+  margin:20px; 
+}
