@@ -31,52 +31,55 @@ var Talk = mongoose.model('Talk', TalkSchema);
 var mongoose = require('mongoose');
 var Talk = mongoose.model('Talk');
 
-exports.list = function(data, callback) {
+exports.list = function(req, res) {
     Talk.find(function (err, talks, count){
-        if(err) return console.log(err);
-        console.error(err);
-    });
-}
+        if(err) {
+            console.log(err);
+            res.json({error: err.name}, 500);
+        }
 
-exports.create = function(data, callback) {
+        res.json({talks: talks});
+      });
+
+    };
+
+exports.create = function(req, res) {
 //create documents
 //db.collectionName.save({key: value});
     console.log('created');
     var talk = new Talk({
-        topic: data.topic,
-        speaker: data.speaker,
-        category: data.category,
-        description: data.description
+        topic: res.topic,
+        speaker: res.speaker,
+        category: res.category,
+        description: res.description
     });
     talk.save(function (err, talk){
-        if(err) return console.error(err);
+        if(err) {
+            console.error(err);
+        }
         console.log(talk);
     });
 };
 exports.show = function(data, callback) {
 
     Talk.find( { topic: '東方神祕力量'}, function (err, talk) {
-        if(err) return console.error(err);
+        if(err) {
+            console.error(err);
+        }
         console.log('talk:'+talk);
-        callback(talk);
+        // callback();
         //console.error(err);
     });
-}
+};
 
-//     function update(data, callback)
-// // update place & votes(remember ID in the array)
 
-//     )};
+exports.update = function(req, res){
+    Talk.findById( req.params.id, function(err, talk){
 
-function destroy(data, callback) {
-    cDomain.remove(data.get, function(err, removed) {
-        if (err) {
-            callback(err, null);
-        }else{
-            cb(null, removed);
-        }
+        // update place & votes(remember ID in the array)
     });
-}
+};
+
 
 // return {
 //     'list': list,
@@ -88,13 +91,3 @@ function destroy(data, callback) {
 //};
 
 
-
-function queryQry (req, res) {
-    var data =  makeObject(req.body);
-
-    index.create(data, function (err, data) {
-        console.log(err, data);
-        res.send(data);
-    });
-
-}
