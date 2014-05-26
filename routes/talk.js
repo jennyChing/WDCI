@@ -11,14 +11,15 @@ var db = require('../db');
 var TalkSchema = new Schema({
 
     id: { type: String},
+    host_id: {type: String},
     topic: { type: String, required: true},
     status: { type: Boolean},
     speaker: { type: String, required: true},
     category: { type: String, required: true},
     description: { type: String, required: true},
     vote: {
-        type: Number,
-        id: []
+        num: Number,
+        voter_id: [String]
     },
     imageURL: { type: String}
 });
@@ -63,10 +64,17 @@ exports.show = function(data, callback) {
     });
 }
 
-//     function update(data, callback)
-// // update place & votes(remember ID in the array)
-
-//     )};
+exports.update = function(req, res){
+    // Talk.findById(req.body.talk_id, function(err, talk){
+    //     talk.vote.num += 1;
+    //     talk.vote.vote
+    //     talk.save(function(err){
+    //         if(err) return console.log(err);
+    //         res.send({'msg': 'ok'});
+    //     });
+    // });
+    Talk.update({_id: req.body.talk_id}, {vote['num'] : vote['num'] + 1 ,$push: {vote['voter_id']: req.body.voter_id}})
+}
 
 function destroy(data, callback) {
     cDomain.remove(data.get, function(err, removed) {
