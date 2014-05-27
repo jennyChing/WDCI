@@ -10,6 +10,7 @@ var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL;
 //var db = mongo.db(mongoUri, {native_parser:true});
 var db = require('./db');
 var app = express();
+//mongo.connect(mongoUri, )
 
 // all environments
 
