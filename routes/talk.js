@@ -20,7 +20,7 @@ var TalkSchema = new Schema({
     category: { type: String, required: true},
     description: { type: String, required: true},
     vote: {
-        num: Number,
+        num: {type: Number, required: true},
         voter_id: [String]
     },
     imageURL: { type: String}
@@ -31,8 +31,8 @@ var Talk = mongoose.model('Talk', TalkSchema);
 //save into mongoDB
 //module.exports = function(db) {
 
-var mongoose = require('mongoose');
-var Talk = mongoose.model('Talk');
+//var mongoose = require('mongoose');
+//var Talk = mongoose.model('Talk');
 
 exports.list = function(req, res) {
     Talk.find(function (err, talks, count){
@@ -51,21 +51,23 @@ exports.create = function(req, res) {
 //db.collectionName.save({key: value});
     console.log('created');
     var talk = new Talk({
-        topic: res.topic,
-        speaker: res.speaker,
-        category: res.category,
-        description: res.description
+        topic: req.body.topic,
+        speaker: req.body.speaker,
+        category: req.body.category,
+        vote: {num: 0, voter_id:[]},
+        description: req.body.description
     });
-    talk.save(function (err, talk){
+    talk.save(function (err, data){
         if(err) {
             console.error(err);
         }
-        console.log(talk);
+        console.log('data: ' + data);
+        res.send(data);
     });
 };
 exports.show = function(req, res) {
 
-    Talk.find( { topic: '東方神祕力量'}, function (err, talk) {
+    Talk.find( { _id: req.body.talk_id}, function (err, talk) {
         if(err) {
             console.error(err);
         }
@@ -77,18 +79,22 @@ exports.show = function(req, res) {
 };
 
 exports.update = function(req, res){
-    // Talk.findById(req.body.talk_id, function(err, talk){
-    //     talk.vote.num += 1;
-    //     talk.vote.vote
-    //     talk.save(function(err){
-    //         if(err) return console.log(err);
-    //         res.send({'msg': 'ok'});
-    //     });
-    // });
-    Talk.update({_id: req.body.talk_id}, {vote['num'] : vote['num'] + 1 ,$push: {vote['voter_id']: req.body.voter_id}})
+    
+    Talk.update({_id: req.body.talk_id}, {$push: {'voter_id': req.body.voter_id}, $inc: {'vote.num': 1}}, 
+        function(err, result){
+            //console.log('err:'+err);
+            if(err) return err;
+            console.log('result: '+ result);
+            if(result > 0){
+                res.send({'message' : 'ok'});
+            }else{
+                res.send({'message' : 'not found'});
+            }
+            //outcome.voter_id = true;
+    });
 }
 
-// return {
+// return 
 //     'list': list,
 //     'create': create,
 //     'update': update,
