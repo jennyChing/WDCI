@@ -6,16 +6,20 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='description', content='')
     meta(name='keywords', content='trytalk, CCSP, gov, speach, open')
-
     link(rel='stylesheet', href='/css/normalize.css')
     link(rel='stylesheet', href='/css/bootstrap1.css')
     link(rel='stylesheet', href='/css/foundation.min.css')
     link(rel='stylesheet', href='/css/front-nav.css')
     link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css')
+
 
     block style
 
     script(type='text/javascript', src='/js/main/jquery.js')
+    script(type='text/javascript', src='//code.jquery.com/jquery-1.10.2.js')
+    script(type='text/javascript', src='//code.jquery.com/ui/1.10.4/jquery-ui.js')
+    script(type='text/javascript', src='//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js')
     script(type='text/javascript', src='/js/main/jquery.validate.js')
     script(type='text/javascript', src='/js/main/jquery.serializeObject.js')
     script(type='text/javascript', src='/js/main/waypoints.min.js')
@@ -104,7 +108,7 @@ html
         header
           h1 What is hot now?
           h4 熱門的講座
-        .column.medium-12.small-10.small-centered
+        .column.medium-12.small-10.small-centered(style="margin-top:20px;")
           .talkPicture
             img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
             .talkTitle
@@ -133,12 +137,44 @@ html
           h1 Now you can vote
           h4 你可以選擇支持下列已建立的講座
           //- .column.medium-12.small-10.small-centered
-          .talkCategoryButton
+          .talkCategoryButton(style="margin-bottom:30px;")
             button.wid40.btn.btn-primary(type="button") 科技
             button.wid40.btn.btn-success(type="button") 生活
             button.wid40.btn.btn-warning(type="button") 其他
 
+        .progress.progress-striped.active(style="margin-bottom:30px;") 人氣增加中
+          .progress-bar(role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%")
+            span.sr-only 45% Complete
+        .talk-content
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
+            .talkTitle
+              東方神祕力量
+            .talkSpeaker 李嗣涔
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 1234
 
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
+            .talkTitle What is Hackathon?
+            .talkSpeaker 金子芮
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 38419
+
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
+            .talkTitle 第一次打政府臉就上手
+            .talkSpeaker 童盈超
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 68264
+
+      .wahaButton
+        button.btn.btn-default(style="width:120px;") toggleTest
+      .wahaha haha
+
+      a.ui-btn(href="#myPopup" data-rel="popup" data-transition="flip") flip
+      #myPopup.ui-content(data-role="popup")
+        p This is a simple popup.
 
   script.
 
@@ -154,6 +190,9 @@ html
         console.log(result[0].topic);
         //alert(result);
       });
+
+    $(".wahaButton").click(function() {
+      $( ".wahaha" ).toggle( "drop", 1000 );
     });
 
     $('#submit').click(function(){

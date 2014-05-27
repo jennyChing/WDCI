@@ -5,11 +5,12 @@ var talk = require('./routes/talk');
 var http = require('http');
 var path = require('path');
 var portNum = process.env.PORT || 3000;
-var mongo = require('mongoskin');
-var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost:27017/robotserver';
+var mongo = require('mongoose');
+var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL;
 //var db = mongo.db(mongoUri, {native_parser:true});
 var db = require('./db');
 var app = express();
+//mongo.connect(mongoUri, )
 
 // all environments
 
@@ -33,7 +34,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', index.load);
 //app.post('/create', talk.create);
-app.post('/createTalk', createTalk);
+app.post('/createTalk', talk.create);
 // app.post('/update', talk.update);
 app.get('/search', index.search);
 app.get('/load', index.load);
@@ -45,6 +46,7 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
+<<<<<<< HEAD
 
 function createTalk (req, res) {
     var data = {
@@ -59,3 +61,5 @@ function createTalk (req, res) {
 }
 
 
+=======
+>>>>>>> 6ce4737786b12ce1386a80497304267b8c68f2e7

@@ -2,7 +2,7 @@
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/CCSP');
+mongoose.connect(process.env.MONGOLAB_URI|| 'mongodb://localhost:27017/CCSP');
 
 // Error handler
 mongoose.connection.on('error', function (err) {
