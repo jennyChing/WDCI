@@ -88,21 +88,6 @@ function getUserId(id, name){
       localStorage.user_name = name;
       console.log('user_id: '+ localStorage.user_id);
     }
-    // var user_id = {
-    //   'id': id
-    // };
-    // $.ajax({
-    //   type:'POST',
-    //   data: id,
-    //   url: '/pushid',
-    //   dataType: 'JSON'
-    // }).done(function(response){
-    //   if(response.msg === ''){
-    //     console.log('fuck');
-    //   }else{
-    //     alert('Error: '+ response.msg);
-    //   }
-    // });
   }
 }
 function getUserName(){
@@ -111,3 +96,23 @@ function getUserName(){
   }
   return 'Hi AA';
 }
+
+$(document).ready(function(){
+  $('.btn.btn-info').click(function(){
+    if(localStorage.user_id === null){
+      alert('Please log in first!!');
+    }else{
+      var vote = {
+        'voter_id': localStorage.user_id,
+        'talk_id': this.parent().find('div').attr('talk_id').toString()
+      }
+      $.ajax({
+        url: '/vote',
+        dataType: 'JSON',
+        data: vote,
+        type: 'POST'
+      });
+      console.log('send vote');
+    }
+  });
+});
