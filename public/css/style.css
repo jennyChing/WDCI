@@ -360,3 +360,11 @@ section {
   width: 100px;
   margin:20px; 
 }
+
+.wahaha{
+  width: 100px;
+  height: 100px;
+  background: orange;
+  border: 2px solid #000;
+  display: none;
+}
