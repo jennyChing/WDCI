@@ -67,14 +67,18 @@ exports.create = function(req, res) {
 };
 exports.show = function(req, res) {
 
-    Talk.find( { _id: req.body.talk_id}, function (err, talk) {
+    if(req.body.category === null){
+        res.send({'message' : 'err'});
+        return;
+    }
+    Talk.find( { 'category': req.body.category }, function (err, talk) {
         if(err) {
             console.error(err);
         }
-        console.log('talk:'+talk);
-        res.send(talk);
-        // callback();
-        //console.error(err);
+        console.log('talk:' + talk);
+        res.send({
+            'message':'ok',
+            'result': talk});
     });
 };
 
