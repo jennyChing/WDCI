@@ -46,20 +46,16 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-<<<<<<< HEAD
 
-function createTalk (req, res) {
-    var data = {
-        topic: req.body.topic,
-        speaker: req.body.speaker,
-        category: req.body.category,
-        description: req.body.description
-    };
-    talk.create(data);
-    res.send('data', data);
-    console.log('data', data);
-}
+// function createTalk (req, res) {
+//     var data = {
+//         topic: req.body.topic,
+//         speaker: req.body.speaker,
+//         category: req.body.category,
+//         description: req.body.description
+//     };
+//     talk.create(data);
+//     res.send('data', data);
+//     console.log('data', data);
+// }
 
-
-=======
->>>>>>> 6ce4737786b12ce1386a80497304267b8c68f2e7
