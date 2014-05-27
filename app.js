@@ -56,4 +56,6 @@ function createTalk (req, res) {
     talk.create(data);
     res.send('data', data);
     console.log('data', data);
-};
+}
+
+

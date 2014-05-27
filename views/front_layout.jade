@@ -73,13 +73,13 @@ html
             input#talk(type='text', name='talk', placeholder='欲查詢的講座', tabindex='1', autofocus='autofocus')
             input#search.button.radius(type='button', value='SEARCH', tabindex='3')
 
-        div#QQ(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;display:none;')
+        //- div#QQ(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;display:none;')
           img(style='width:200px; height:200px;border-radius:30px;', src='http://history.n.yam.com/news_photo/ebcnews/images/201106/M20110609914653.jpg',alt='hello!' class='img-rounded;').
           div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;')  請問哪裡還有22k的公司？
           div(style='text-align:center; font-size:14px; color:gray;  padding-top:10px;') 郭台銘
           button.btn.btn-info(, type='button') Vote
           div(style='text-align: center; padding-top: 10px;') 1
-        p#response=talk.topic
+        //- p#response=talk.topic
 
 
       //- div(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;')
@@ -142,6 +142,20 @@ html
 
   script.
 
+    $('#search').click(function(){
+
+      $.post('/show',{
+        search: $('#talk').val()
+        //split the function
+
+      }, function(res){
+        console.log('haha', res);
+        var result = JSON.parse(res.result);
+        console.log(result[0].topic);
+        //alert(result);
+      });
+    });
+
     $('#submit').click(function(){
       $.post('/createTalk',{
         topic: $('#topic').val(),
@@ -153,12 +167,5 @@ html
         console.log(topic);
       });
     });
-    $('#search').click(function(){
-      $('#QQ').show();
-      $.post('/show',{
-      }, function(res){
-        console.log('haha', res);
-        $('')
-      });
-    });
+
 

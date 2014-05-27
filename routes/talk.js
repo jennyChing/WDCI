@@ -65,12 +65,18 @@ exports.create = function(req, res) {
 };
 exports.show = function(req, res) {
 
-    Talk.find( { topic: '東方神祕力量'}, function (err, talk) {
+    console.log('show');
+
+
+    Talk.find( { topic: req.body.search}, function (err, talk) {
         if(err) {
             console.error(err);
         }
         console.log('talk:'+talk);
-        res.send(talk);
+        // var result = {
+
+        // }
+        res.send({'result':JSON.stringify(talk)});
         // callback();
         //console.error(err);
     });
@@ -85,8 +91,8 @@ exports.update = function(req, res){
     //         res.send({'msg': 'ok'});
     //     });
     // });
-    Talk.update({_id: req.body.talk_id}, {vote['num'] : vote['num'] + 1 ,$push: {vote['voter_id']: req.body.voter_id}})
-}
+    // Talk.update({_id: req.body.talk_id}, {vote['num'] : vote['num'] + 1 ,$push: {vote['voter_id']: req.body.voter_id}})
+};
 
 // return {
 //     'list': list,
