@@ -111,8 +111,41 @@ $(document).ready(function(){
         dataType: 'JSON',
         data: vote,
         type: 'POST'
+      }).done(function(response){
+        if(response.message === 'ok'){
+          console.log(response.message);
+        }else{
+          console.log('Err');
+        }
       });
       console.log('send vote');
+    }
+  });
+  $('.btn.btn-primary, .btn.btn-success, .btn.btn-warning').click(function(){
+    console.log('category: ' + $(this).text());
+    var type = $(this).text();
+    var category = {'category' : $(this).text()};
+    var content = '';
+    var image = '<img style="width:200px; height:200px;border-radius:30px;" src="http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg" alt="hello!" class="img-rounded;">';
+    if(type === '科技' || type === '生活' || type === '其他'){
+      $.ajax({
+        type:'POST',
+        url:'/show',
+        data: category,
+        dataType: 'JSON'
+      }).done(function(response){
+        if(response.message === 'ok'){
+          response.result.forEach(function(element, index, array){
+            //console.log('index: ' + index + ' data:' + element.topic);
+            content += '<div class="talkPicture">' + image + '<div class="talkTitle">' + element.topic
+              + '</div><div class="talkSpeaker">' + element.speaker + '</div><button , type="button" class="btn btn-info">Vote</button><div class="talkNumberOfVotes">'
+              + element.vote.num + '</div>'; 
+          });
+          $('.talk-content').html(content);
+        }
+      });
+    }else{
+      alert('no this category!!');
     }
   });
 });
