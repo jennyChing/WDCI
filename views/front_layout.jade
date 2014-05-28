@@ -101,8 +101,15 @@ html
           form#subForm.sign-up-form.clearfix
             input#topic(type='text', name='topic', placeholder='輸入講座主題')
             input#speaker(type='text', name='speaker', placeholder='輸入演講者')
-            input#category(type='text', name='category', placeholder='輸入演講者類別')
+            //input#category(type='text', name='category', placeholder='輸入演講者類別')
+            select.form-control
+              option 科技
+              option 生活
+              option 其他
             input#description(type='text', name='description', placeholder='講座資訊')
+            input#asd(type='file')
+            img#img(src='')
+            #base
             input#submit.button.radius(style='text-align:center;',type='button', value='提交', tabindex='3')
       .row
         header
@@ -168,25 +175,25 @@ html
             button.btn.btn-info(, type='button') Vote
             .talkNumberOfVotes 68264  
 
-      .wahaButton
-        button.btn.btn-default(style="width:120px;") toggleTest
-      .wahaha haha
-
-      a.ui-btn(href="#myPopup" data-rel="popup" data-transition="flip") flip
-      #myPopup.ui-content(data-role="popup")
-        p This is a simple popup.
-
   script.
 
     $(".wahaButton").click(function() {
       $( ".wahaha" ).toggle( "drop", 1000 );
+    }); 
+    var category_type = '';
+    $('select').prop('selectedIndex', -1);
+    $('select').change(function(){
+      $('select option:selected').each(function(){
+        category_type = $(this).text();
+        console.log(category_type);
+      });
     });
 
     $('#submit').click(function(){
       $.post('/createTalk',{
         topic: $('#topic').val(),
         speaker: $('#speaker').val(),
-        category: $('#category').val(),
+        category: category_type,
         description: $('#description').val()
       }, function(msg){
         alert('感謝您，已加入！')
