@@ -97,7 +97,9 @@ function getUserName(){
   return 'Hi AA';
 }
 
+
 $(document).ready(function(){
+  $('select').prop('selectedIndex', -1);
   $('.btn.btn-info').click(function(){
     if(localStorage.user_id === null){
       alert('Please log in first!!');
@@ -139,13 +141,32 @@ $(document).ready(function(){
             //console.log('index: ' + index + ' data:' + element.topic);
             content += '<div class="talkPicture">' + image + '<div class="talkTitle">' + element.topic
               + '</div><div class="talkSpeaker">' + element.speaker + '</div><button , type="button" class="btn btn-info">Vote</button><div class="talkNumberOfVotes">'
-              + element.vote.num + '</div>'; 
+              + element.vote.num + '</div>  '; 
           });
           $('.talk-content').html(content);
+        }else{
+          alert('No talks!!');
         }
       });
     }else{
       alert('no this category!!');
     }
   });
+  function readImage(input){
+    if(input.files && input.files[0]){
+      var FR = new FileReader();
+      FR.onload = function(e){
+        $('#img').attr('src', e.target.result);
+        $('#base').text(e.target.result);
+      };
+      FR.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#asd").change(function(){
+    readImage(this);
+  });
+  $('select').change(function(){
+    console.log('change');
+  });
+  
 });

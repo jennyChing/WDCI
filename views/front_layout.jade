@@ -25,6 +25,14 @@ html
     script(type='text/javascript', src='/js/main/waypoints.min.js')
     script(type='text/javascript', src='/js/fb.js')
     script.
+      var category_type = '';
+      $('select').prop('selectedIndex', -1);
+      $('select').change(function(){
+      $('select option:selected').each(function(){
+          category_type = $(this).text();
+          console.log(category_type);
+        });
+      });
       $('#voteButton').click(function(){
         alert("Voted!");
       });
@@ -38,7 +46,7 @@ html
         $.post('/createTalk',{
           topic: $('#topic').val(),
           speaker: $('#speaker').val(),
-          category: $('#category').val(),
+          category: category_type,
           description: $('#description').val()
         }, function(msg){
           alert('感謝您，已加入！')
@@ -84,7 +92,7 @@ html
         $('.open1').click(function(){
           $('.dialog1').dialog('open');  
         });
-      });
+      }); 
   body
     //- script.
       function getUserName(){
@@ -161,8 +169,15 @@ html
           form#subForm.sign-up-form.clearfix
             input#topic(type='text', name='topic', placeholder='輸入講座主題')
             input#speaker(type='text', name='speaker', placeholder='輸入演講者')
-            input#category(type='text', name='category', placeholder='輸入演講者類別')
+            //input#category(type='text', name='category', placeholder='輸入演講者類別')
+            select.form-control
+              option 科技
+              option 生活
+              option 其他
             input#description(type='text', name='description', placeholder='講座資訊')
+            input#asd(type='file')
+            img#img(src='')
+            #base
             input#submit.button.radius(style='text-align:center;',type='button', value='提交', tabindex='3')
       .row
         header
@@ -249,5 +264,7 @@ html
       //- a.ui-btn(href="#myPopup" data-rel="popup" data-transition="flip") flip
       //- #myPopup.ui-content(data-role="popup")
       //-   p This is a simple popup.
+  script.
 
+   
 
