@@ -368,3 +368,14 @@ section {
   border: 2px solid #000;
   display: none;
 }
+
+.ui-dialog.success-dialog {
+    font-family: Verdana,Arial,sans-serif;
+    font-size: .8em;
+}
+
+.talkPicture img{
+  width:200px; 
+  height:200px;
+  border-radius:30px;
+}
