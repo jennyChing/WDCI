@@ -26,81 +26,9 @@ html
     script(type='text/javascript', src='/js/main/jquery.serializeObject.js')
     script(type='text/javascript', src='/js/main/waypoints.min.js')
     script(type='text/javascript', src='/js/fb.js')
-    script.
-      var category_type = '';
-      $('select').prop('selectedIndex', -1);
-      $('select').change(function(){
-      $('select option:selected').each(function(){
-          category_type = $(this).text();
-          console.log(category_type);
-        });
-      });
-      $('#voteButton').click(function(){
-        alert("Voted!");
-      });
-      $('.popupp').click(function(){
-        $('.dialog1').dialog('close');
-      });
-      $(".wahaButton").click(function() {
-        $( ".wahaha" ).toggle( "drop", 1000 );
-      });
-      $('#submit').click(function(){
-        $.post('/createTalk',{
-          topic: $('#topic').val(),
-          speaker: $('#speaker').val(),
-          category: category_type,
-          description: $('#description').val()
-        }, function(msg){
-          alert('感謝您，已加入！')
-          console.log(topic);
-        });
-      });
-      $('#search').click(function(){
-        $('#QQ').show();
-        $.post('/show',{
-        }, function(res){
-          console.log('haha', res);
-          $('')
-        });
-      });
-      $(function(){
-        $('.dialog1').dialog({
-          open: function(event, ui) { 
-            // Set opacity 
-            $(this).parent().css('opacity', 0.6); 
-            // Hide close button 
-            $(this).parent().children().children(".ui-dialog-titlebar-close").hide(); 
-            // Handle opacity 
-            $(this).parent().hover( function () { 
-                $(this).css('opacity', 1); 
-            }, function (event) { 
-                $(this).css('opacity', 1); 
-            }); 
-          },
-          width: 1000,
-          height: 600,
-          autoOpen: false,
-          modal: true,
-          closeOnEscape: true,
-          show: {
-            effect: "drop",
-            duration: 500
-          },
-          hide: {
-            effect:"drop",
-            duration: 500
-          }
-          });
-        $('.open1').click(function(){
-          $('.dialog1').dialog('open');  
-        });
-      }); 
+    script(type='text/javascript', src='/js/front.js')
   body
     //- script.
-      function getUserName(){
-        if(localStorage.user_name !== null)
-          return 'Hi' + localStorage.user_name;
-        return 'Hi AA';
     .container
       header#header
         h1#logo
@@ -240,7 +168,7 @@ html
         .progress.progress-striped.active(style="margin-bottom:30px;") 人氣增加中
           .progress-bar(role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%")
             span.sr-only 45% Complete
-        .talk-content
+        #talk-content
           .talkPicture
             img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
             .talkTitle
@@ -284,7 +212,6 @@ html
       //- a.ui-btn(href="#myPopup" data-rel="popup" data-transition="flip") flip
       //- #myPopup.ui-content(data-role="popup")
       //-   p This is a simple popup.
-  script.
 
    
 
