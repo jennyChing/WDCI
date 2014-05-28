@@ -67,6 +67,8 @@ exports.create = function(req, res) {
 };
 exports.show = function(req, res) {
 
+    console.log('show');
+
     if(req.body.category === null){
         res.send({'message' : 'err'});
         return;
@@ -85,8 +87,8 @@ exports.show = function(req, res) {
 exports.update = function(req, res){
 
     console.log('req: ' + req.body);
-    
-    Talk.update({_id: req.body.talk_id}, {$push: {'vote.voter_id': req.body.voter_id}, $inc: {'vote.num': 1}}, 
+
+    Talk.update({_id: req.body.talk_id}, {$push: {'vote.voter_id': req.body.voter_id}, $inc: {'vote.num': 1}},
         function(err, result){
             //console.log('err:'+err);
             if(err) return err;
@@ -100,7 +102,7 @@ exports.update = function(req, res){
     });
 }
 
-// return 
+// return
 //     'list': list,
 //     'create': create,
 //     'update': update,

@@ -19,12 +19,68 @@ html
     script(type='text/javascript', src='/js/main/jquery.js')
     script(type='text/javascript', src='//code.jquery.com/jquery-1.10.2.js')
     script(type='text/javascript', src='//code.jquery.com/ui/1.10.4/jquery-ui.js')
-    script(type='text/javascript', src='//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js')
+    // script(type='text/javascript', src='//code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js')
     script(type='text/javascript', src='/js/main/jquery.validate.js')
     script(type='text/javascript', src='/js/main/jquery.serializeObject.js')
     script(type='text/javascript', src='/js/main/waypoints.min.js')
     script(type='text/javascript', src='/js/fb.js')
-
+    script.
+      var category_type = '';
+      $('select').prop('selectedIndex', -1);
+      $('select').change(function(){
+      $('select option:selected').each(function(){
+          category_type = $(this).text();
+          console.log(category_type);
+        });
+      });
+      $('#voteButton').click(function(){
+        alert("Voted!");
+      });
+      $('.popupp').click(function(){
+        $('.dialog1').dialog('close');
+      });
+      $(".wahaButton").click(function() {
+        $( ".wahaha" ).toggle( "drop", 1000 );
+      });
+      $('#submit').click(function(){
+        $.post('/createTalk',{
+          topic: $('#topic').val(),
+          speaker: $('#speaker').val(),
+          category: category_type,
+          description: $('#description').val()
+        }, function(msg){
+          alert('感謝您，已加入！')
+          console.log(topic);
+        });
+      });
+      $('#search').click(function(){
+        $('#QQ').show();
+        $.post('/show',{
+        }, function(res){
+          console.log('haha', res);
+          $('')
+        });
+      });
+      $(function(){
+        $('.dialog1').dialog({
+          width: 1000,
+          height: 600,
+          autoOpen: false,
+          modal: true,
+          closeOnEscape: true,
+          show: {
+            effect: "drop",
+            duration: 500
+          },
+          hide: {
+            effect:"drop",
+            duration: 500
+          }
+          });
+        $('.open1').click(function(){
+          $('.dialog1').dialog('open');  
+        });
+      }); 
   body
     //- script.
       function getUserName(){
@@ -77,13 +133,13 @@ html
             input#talk(type='text', name='talk', placeholder='欲查詢的講座', tabindex='1', autofocus='autofocus')
             input#search.button.radius(type='button', value='SEARCH', tabindex='3')
 
-        div#QQ(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;display:none;')
+        //- div#QQ(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;display:none;')
           img(style='width:200px; height:200px;border-radius:30px;', src='http://history.n.yam.com/news_photo/ebcnews/images/201106/M20110609914653.jpg',alt='hello!' class='img-rounded;').
           div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;')  請問哪裡還有22k的公司？
           div(style='text-align:center; font-size:14px; color:gray;  padding-top:10px;') 郭台銘
           button.btn.btn-info(, type='button') Vote
           div(style='text-align: center; padding-top: 10px;') 1
-        //p#response=talk.topic
+        //- p#response=talk.topic
 
 
       //- div(style='width:200px;height:260px;position:relative;float:left;margin-left:5%;')
@@ -157,55 +213,46 @@ html
             img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
             .talkTitle
               東方神祕力量
-            .talkSpeaker 李嗣涔      
+            .talkSpeaker 李嗣涔
             button.btn.btn-info(, type='button') Vote
-            .talkNumberOfVotes 1234    
+            .talkNumberOfVotes 1234
 
           .talkPicture
             img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
             .talkTitle What is Hackathon?
             .talkSpeaker 金子芮
             button.btn.btn-info(, type='button') Vote
-            .talkNumberOfVotes 38419       
+            .talkNumberOfVotes 38419
 
-          .talkPicture
-            img(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
-            .talkTitle 第一次打政府臉就上手
-            .talkSpeaker 童盈超
-            button.btn.btn-info(, type='button') Vote
-            .talkNumberOfVotes 68264  
 
+        .talkPicture
+          img.open1(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
+          .talkTitle 第一次打政府臉就上手
+          .talkSpeaker 童盈超
+          button.btn.btn-info(, type='button') Vote
+          .talkNumberOfVotes 68264  
+
+        .dialog1
+          .thumbnail
+            img(style="text-align:center;border-radius:70px;width:200px;height:200px;" src="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xpa1/t1.0-9/72807_736689643016995_772469513_n.jpg")
+            .caption(style="text-align:center;")
+              h3 第一次打政府臉就上手
+              p 這場演講會請到有名的阿超老師來示範，如何打臉。
+            img(style="text-align:center;border-radius:30px;width:500px;height:300px;" src="http://images.takungpao.com/2014/0329/20140329031758803.jpg" alt="haha")
+            p(style="text-align:center;")
+              a.btn.btn-primary#voteButton(style="width:100px;" role="button" ) 我要投票！
+
+
+
+
+      //- .wahaButton
+      //-   button.btn.btn-default(style="width:120px;") toggleTest
+      //- .wahaha haha
+
+      //- a.ui-btn(href="#myPopup" data-rel="popup" data-transition="flip") flip
+      //- #myPopup.ui-content(data-role="popup")
+      //-   p This is a simple popup.
   script.
 
-    $(".wahaButton").click(function() {
-      $( ".wahaha" ).toggle( "drop", 1000 );
-    }); 
-    var category_type = '';
-    $('select').prop('selectedIndex', -1);
-    $('select').change(function(){
-      $('select option:selected').each(function(){
-        category_type = $(this).text();
-        console.log(category_type);
-      });
-    });
-
-    $('#submit').click(function(){
-      $.post('/createTalk',{
-        topic: $('#topic').val(),
-        speaker: $('#speaker').val(),
-        category: category_type,
-        description: $('#description').val()
-      }, function(msg){
-        alert('感謝您，已加入！')
-        console.log(topic);
-      });
-    });
-    $('#search').click(function(){
-      $('#QQ').show();
-      $.post('/show',{
-      }, function(res){
-        console.log('haha', res);
-        $('')
-      });
-    });
+   
 
