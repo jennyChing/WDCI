@@ -55,6 +55,18 @@ html
       });
       $(function(){
         $('.dialog1').dialog({
+          open: function(event, ui) { 
+            // Set opacity 
+            $(this).parent().css('opacity', 0.6); 
+            // Hide close button 
+            $(this).parent().children().children(".ui-dialog-titlebar-close").hide(); 
+            // Handle opacity 
+            $(this).parent().hover( function () { 
+                $(this).css('opacity', 1); 
+            }, function (event) { 
+                $(this).css('opacity', 1); 
+            }); 
+          },
           width: 1000,
           height: 600,
           autoOpen: false,
