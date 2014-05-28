@@ -85,7 +85,7 @@ exports.update = function(req, res){
     //         res.send({'msg': 'ok'});
     //     });
     // });
-    Talk.update({_id: req.body.talk_id}, {vote['num'] : vote['num'] + 1 ,$push: {vote['voter_id']: req.body.voter_id}})
+    // Talk.update({_id: req.body.talk_id}, {vote['num'] : vote['num'] + 1 ,$push: {vote['voter_id']: req.body.voter_id}})
 }
 
 // return {
