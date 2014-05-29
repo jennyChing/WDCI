@@ -27,5 +27,6 @@
     "express": "3.4.8",
     "jade": "*",
     "moment": "*"
+    "lunr": "*"
   }
 }

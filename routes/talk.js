@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var db = require('../db');
 var express = require('express');
 var app = express();
+var lunr = require('lunr');
 
 //mongoose
 
@@ -45,6 +46,7 @@ exports.list = function(req, res) {
       });
 
     };
+
 
 exports.create = function(req, res) {
 //create documents
@@ -100,8 +102,41 @@ exports.update = function(req, res){
             }
             //outcome.voter_id = true;
     });
-}
+};
+//抓出 database 的資料再塞進 doc 裡
+exports.search = function(req, res){
+    console.log('search');
+    var idx = lunr( function () {
+        this .field( 'topic' , { boost: 10 });
+        this .field( 'speaker', { boost: 10 });
+        this .field( 'description', { boost: 10 });
+    });
+    var doc = [];
+    //-mongo find
+    Talk.find( {}, function (err, talk) {
+        if(err) {
+            console.error(err);
+        }
+        console.log('search:'+talk);
+        res.send({
+            'search': talk
+        });
+        talk.forEach(function(element, index, array){
 
+            doc.push(element);
+            console.log('link to lunr:', element);
+            //每次抓一個 object, 丟進 lunr idx 中
+        });
+    });
+
+    console.log('doc: ', doc);
+    idx.add(doc);
+
+    //搜索, 出現 _ref & score>> 這邊壞掉
+    var result = idx.search( 'Hackathon' );
+    console.log('very improtant', result);
+
+};
 // return
 //     'list': list,
 //     'create': create,
