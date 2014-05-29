@@ -37,10 +37,11 @@ app.get('/', index.load);
 app.post('/createTalk', talk.create);
 // app.post('/update', talk.update);
 app.get('/search', index.search);
-app.get('/load', index.load);
+//app.get('/load', index.load);
 //add the url of your function
 app.post('/show', talk.show);
 app.post('/vote', talk.update);
+app.post('/showProfile', talk.list);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

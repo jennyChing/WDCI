@@ -35,27 +35,31 @@ var Talk = mongoose.model('Talk', TalkSchema);
 //var Talk = mongoose.model('Talk');
 
 exports.list = function(req, res) {
-    Talk.find(function (err, talks, count){
+    Talk.find({$or :[{'host_id': req.body.user_id}, {'vote.voter_id': req.body.user_id}]}, function (err, talks){
         if(err) {
             console.log(err);
             res.json({error: err.name}, 500);
         }
-
-        res.json({talks: talks});
+        //res.render('front_layout', {userName: req.body.user_name});
+        res.send({
+            'message': 'ok',
+            'result': talks});
       });
 
-    };
+};
 
 exports.create = function(req, res) {
 //create documents
 //db.collectionName.save({key: value});
     console.log('created');
     var talk = new Talk({
+        host_id: req.body.host_id,
         topic: req.body.topic,
         speaker: req.body.speaker,
         category: req.body.category,
         vote: {num: 0, voter_id:[]},
-        description: req.body.description
+        description: req.body.description,
+        imageURL: req.body.imageURL
     });
     talk.save(function (err, data){
         if(err) {
