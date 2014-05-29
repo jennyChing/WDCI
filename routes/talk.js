@@ -94,7 +94,7 @@ exports.update = function(req, res){
         function(err, result){
             //console.log('err:'+err);
             if(err) return err;
-            console.log('result: '+ result);
+            console.log('result: '+ JSON.stringify(result));
             if(result > 0){
                 res.send({'message' : 'ok'});
             }else{

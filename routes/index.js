@@ -8,7 +8,7 @@ exports.index = function(req, res){
 
 exports.load = function(req, res){
 	// home page to
-    res.render('front_layout');
+    res.render('front_layout',{userName: "Wilosn Huang"});
 };
 
 exports.search = function(req, res){

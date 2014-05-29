@@ -97,36 +97,42 @@ function getUserName(){
   return 'Hi AA';
 }
 
+
 $(document).ready(function(){
-  $('.btn.btn-info').click(function(){
-    if(localStorage.user_id === null){
-      alert('Please log in first!!');
-    }else{
-      var vote = {
-        'voter_id': localStorage.user_id,
-        'talk_id': this.parent().find('div').attr('talk_id').toString()
-      }
-      $.ajax({
-        url: '/vote',
-        dataType: 'JSON',
-        data: vote,
-        type: 'POST'
-      }).done(function(response){
-        if(response.message === 'ok'){
-          console.log(response.message);
-        }else{
-          console.log('Err');
-        }
-      });
-      console.log('send vote');
-    }
-  });
+ 
+  // $('.btn.btn-info').click(function(){
+  //   if(localStorage.user_id === null){
+  //     alert('Please log in first!!');
+  //   }else{
+  //     var vote = {
+  //       'voter_id': localStorage.user_id,
+  //       'talk_id': this.parent().find('div').attr('talk_id').toString()
+  //     }
+  //     $.ajax({
+  //       url: '/vote',
+  //       dataType: 'JSON',
+  //       data: vote,
+  //       type: 'POST'
+  //     }).done(function(response){
+  //       if(response.message === 'ok'){
+  //         console.log(response.message);
+  //       }else{
+  //         console.log('Err');
+  //       }
+  //     });
+  //     console.log('send vote');
+  //   }
+  // });
+  var topic = '';
+  var speaker = '';
+  var talk_id = '';
+  $(document).on('click', '#talk-content .talkPicture .btn', showDetail);
   $('.btn.btn-primary, .btn.btn-success, .btn.btn-warning').click(function(){
     console.log('category: ' + $(this).text());
     var type = $(this).text();
     var category = {'category' : $(this).text()};
     var content = '';
-    var image = '<img style="width:200px; height:200px;border-radius:30px;" src="http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg" alt="hello!" class="img-rounded;">';
+    var image = '<img style="width:200px; height:200px;border-radius:30px;" src="http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg" alt="hello!" class="open1 img-rounded;">';
     if(type === '科技' || type === '生活' || type === '其他'){
       $.ajax({
         type:'POST',
@@ -136,16 +142,96 @@ $(document).ready(function(){
       }).done(function(response){
         if(response.message === 'ok'){
           response.result.forEach(function(element, index, array){
-            //console.log('index: ' + index + ' data:' + element.topic);
-            content += '<div class="talkPicture">' + image + '<div class="talkTitle">' + element.topic
-              + '</div><div class="talkSpeaker">' + element.speaker + '</div><button , type="button" class="btn btn-info">Vote</button><div class="talkNumberOfVotes">'
-              + element.vote.num + '</div>'; 
+            console.log('index: ' + index + ' data:' + element.topic);
+            content += '<div class="talkPicture" talk_id='+ element._id + '>' + image + '<div class="talkTitle">' + element.topic
+              + '</div><div class="talkSpeaker">' + element.speaker + '</div><button , type="button" class="btn btn-info open1">Vote</button><div class="talkNumberOfVotes">'
+              + element.vote.num + '</div> </div> '; 
           });
-          $('.talk-content').html(content);
+          $('#talk-content').html(content);
+        }else{
+          alert('No talks!!');
         }
       });
     }else{
       alert('no this category!!');
     }
   });
+  function readImage(input){
+    if(input.files && input.files[0]){
+      var FR = new FileReader();
+      FR.onload = function(e){
+        $('#img').attr('src', e.target.result);
+        $('#base').text(e.target.result);
+      };
+      FR.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#asd").change(function(){
+    readImage(this);
+  });
+  $('.dialog1').dialog({
+    width: 1000,
+    height: 600,
+    autoOpen: false,
+    modal: true,
+    closeOnEscape: true,
+    open: function(event, ui){
+
+      if(topic !== null && speaker !== null){
+        console.log('topic: '+ $('.dialog1').find('h3').text() + 'speaker: ' + $('.dialog1 .thumbnail .caption p').text());
+        $('.dialog1').find('h3').text(topic);
+        $('.dialog1').find('h3').attr('talk_id', talk_id);
+        $('.dialog1 .thumbnail .caption p').text(speaker);
+      }
+    },
+    buttons:[{
+      text: 'Vote',
+      click: function(){
+        var add = {
+          'talk_id': $('.dialog1').find('h3').attr('talk_id'),
+          'voter_id': localStorage.user_id };
+        //console.log('iddd: ' + $('.dialog1').find('h3').attr('talk_id'));
+        $.ajax({
+          type:'POST',
+          url:'/vote',
+          data: add,
+          dataType:'JSON'
+        }).done(function(response){
+          if(response.message === 'ok'){
+            //$(this).dialog('close');
+            console.log('ok');
+          }  
+        });
+        $(this).dialog('close');
+      }
+    }],
+    show: {
+      effect: "drop",
+      duration: 500
+    },
+    hide: {
+      effect:"drop",
+      duration: 500
+    }
+  });
+  function showDetail(){
+    console.log('click!!!!!');
+    var prev = $(this).parent('.talkPicture');
+    console.log('id: ' + prev.attr('talk_id'));
+    talk_id = prev.attr('talk_id');
+    topic = prev.find('.talkTitle').text();
+    speaker = prev.find('.talkSpeaker').text();
+    //$('.dialog1').find('h3').val(prev.find('.talkTitle').text());
+    //$('.dialog1 .thumbnail .caption p').val(prev.find('.talkSpeaker').text());
+    $('.dialog1').dialog('open'); 
+  }
+  // $('btn.open1').click(function(){
+  //   console.log('click!!!!!');
+  //   var prev = $(this).parent('talkPicture');
+  //   console.log('id: ' + prev.attr('talk_id'));
+  //   $('.dialog1').find('h3').val(prev.find('.talkTitle').text());
+  //   $('.dialog1 .caption p').val(prev.find('.talkSpeaker').text());
+  //   $('.dialog1').dialog('open');  
+  // });
+  
 });
