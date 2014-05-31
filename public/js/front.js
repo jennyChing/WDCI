@@ -28,6 +28,8 @@ $(function(){
     });
   });
   $('#search').click(function(){
+    var talk = $('#talk');
+    alert(talk.attr(value));
     $('#QQ').show();
     $.post('/show',{
     }, function(res){
