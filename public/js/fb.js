@@ -99,40 +99,16 @@ function getUserName(){
 }
 
 
-$(document).ready(function(){
- 
-  // $('.btn.btn-info').click(function(){
-  //   if(localStorage.user_id === null){
-  //     alert('Please log in first!!');
-  //   }else{
-  //     var vote = {
-  //       'voter_id': localStorage.user_id,
-  //       'talk_id': this.parent().find('div').attr('talk_id').toString()
-  //     }
-  //     $.ajax({
-  //       url: '/vote',
-  //       dataType: 'JSON',
-  //       data: vote,
-  //       type: 'POST'
-  //     }).done(function(response){
-  //       if(response.message === 'ok'){
-  //         console.log(response.message);
-  //       }else{
-  //         console.log('Err');
-  //       }
-  //     });
-  //     console.log('send vote');
-  //   }
-  // });
-  
+$(document).ready(function(){ 
   var topic = '';
   var speaker = '';
   var talk_id = '';
   var type = '';
   var imageURL = '';
   $(document).on('click', '#talk-content .talkPicture .btn', showDetail);
+  $('#img').hide();
   $("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
-  $('.btn.btn-primary, .btn.btn-success, .btn.btn-warning').click(function(){
+  $('.wid40.btn.btn-primary, .wid40.btn.btn-success, .wid40.btn.btn-warning').click(function(){
     console.log('category: ' + $(this).text());
     type = $(this).text();
     var category = {'category' : $(this).text()};
@@ -162,11 +138,14 @@ $(document).ready(function(){
     }
   });
   function readImage(input){
+    console.log('readImage');
     if(input.files && input.files[0]){
       var FR = new FileReader();
+      $('#uploadFile').val(input.value.replace('C:\\fakepath\\', ''));
+      $('#img').show();
+      $('#drop-files').hide();
       FR.onload = function(e){
         $('#img').attr('src', e.target.result);
-        $('#base').text(e.target.result);
       };
       FR.readAsDataURL(input.files[0]);
     }

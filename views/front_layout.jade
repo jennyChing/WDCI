@@ -8,7 +8,7 @@ html
     meta(name='keywords', content='trytalk, CCSP, gov, speach, open')
     link(rel='stylesheet', href='/css/normalize.css')
     //- link(rel='stylesheet', href='/css/bootstrap.css')
-    link(rel='stylesheet', href='../public/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/font-awesome.min.css')
     link(rel='stylesheet', href='/css/foundation.min.css')
     link(rel='stylesheet', href='/css/front-nav.css')
@@ -162,14 +162,24 @@ html
             input#topic(type='text', name='topic', placeholder='輸入講座主題')
             input#speaker(type='text', name='speaker', placeholder='輸入演講者')
             //input#category(type='text', name='category', placeholder='輸入演講者類別')
-            select(name="select")
-              option(value='0') 選擇分類
+            select(name="selectCategory")
+              option(value=" " , selected='selected', disabled='disabled', id='placeholder') 選擇分類
               option(value="科技") 科技
               option(value="生活") 生活
               option(value="其他") 其他
+            select(name="selectLocation")
+              option(value=" " , selected='selected', disabled='disabled', id='placeholder') 選擇地區
+              option(value="科技") 北部
+              option(value="生活") 中部
+              option(value="其他") 南部
             input#description(type='text', name='description', placeholder='講座資訊')
-            input#asd(type='file')
+            input#uploadFile(placeholder='選擇演講資訊照', disabled='disabled')
+            div.fileUpload.btn.btn-primary
+              span 上傳
+              input.upload#asd(type='file')
             img#img(src='')
+            div#drop-files(ondragover='return false')
+              | 圖片預覽
             #base
             input#submit.button.radius(style='text-align:center;',type='button', value='提交', tabindex='3')
 
