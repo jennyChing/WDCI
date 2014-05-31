@@ -8,16 +8,23 @@ html
     meta(name='keywords', content='trytalk, CCSP, gov, speach, open')
     link(rel='stylesheet', href='/css/normalize.css')
     //- link(rel='stylesheet', href='/css/bootstrap.css')
-    link(rel='stylesheet', href='../public/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    //- link(rel='stylesheet', href='/css/font-awesome.min.css')
     link(rel='stylesheet', href='/css/foundation.min.css')
+    link(rel='stylesheet', href='/css/contentflow.css')
+    link(rel='stylesheet', href='/css/mycontentflow.css')
     link(rel='stylesheet', href='/css/front-nav.css')
     link(rel='stylesheet', href='/css/style.css')
     link(rel='stylesheet', href='//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css')
 
 
+
+
+
+
     block style
 
+    script(src='/js/app.js', type='text/javascript')
     script(type='text/javascript', src='/js/main/jquery.js')
     script(type='text/javascript', src='//code.jquery.com/jquery-1.10.2.js')
     script(type='text/javascript', src='//code.jquery.com/ui/1.10.4/jquery-ui.js')
@@ -28,6 +35,11 @@ html
     script(type='text/javascript', src='/js/fb.js')
     script(type='text/javascript', src='/js/front.js')
     script(type='text/javascript', src='/js/jquery.leanModal.min.js')
+    script(type='text/javascript', src='/js/contentflow.js')
+    script.
+      var cf = new ContentFlow('contentFlow', {reflectionColor: "#000000"});
+
+    // script(type="text/javascript" src="/js/contentflow.js")
   body
     //- script.
     .container
@@ -63,6 +75,95 @@ html
                 p=user.email
               li
                 a(href='/logout') 登出
+    section.flowEverything
+      .row
+        header
+          h1 What is hot now?
+          h4 熱門的講座
+          #contentFlow.ContentFlow
+            .loadIndicator
+              .indicator
+            .flow
+              .item
+                img.content(src="https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg")
+                .caption selectButton
+              .item
+                img.content(src="https://dl.dropboxusercontent.com/u/79375953/Photo%2012-10-4%20%E4%B8%8B%E5%8D%884%2057%2032.jpg")
+                .caption remove
+              .item
+                img.content(src="https://dl.dropboxusercontent.com/u/79375953/Folder.jpg")
+                .caption recovery-recovery
+              .item
+                img.content(src="http://images.jrj.com.cn/2009/04/20090407130620812.jpg")
+                .caption takeButton
+              .item
+                img.content(src="http://www.planeboy.net/wp-content/uploads/2010/05/jobs.jpg")
+                .caption takeButton
+              .item
+                img.content(src="http://photocdn.sohu.com/20080409/Img256185997.jpg")
+                .caption takeButton
+              .item
+                img.content(src="http://a1.att.hudong.com/53/61/01000000000000119086153649953.jpg")
+                .caption takeButton
+              .item
+                img.content(src="http://image2.sina.com.cn/IT/it/2007-04-19/U1788P2T1D1474071F9DT20070419143346.jpg")
+                .caption takeButton
+            .globalCaption
+            .scrollbar
+              .slider
+                .position
+    //- section#contentFlow
+    //-   .row
+    //-     .pageWrapper
+    //-       .demo
+    //-         .wrapper
+    //-           #coverflow
+    //-             img(src='/img/gorillaz-plasticbeach.jpg', data-artist='Gorillaz', data-album='Plastic Beach')
+    //-             img(src='/img/kidrock-bornfree.jpg', data-artist='Kid Rock', data-album='Born Free')
+    //-             img(src='/img/recovery-recovery.jpg', data-artist='Eminem', data-album='Recovery')
+    //-             img(src='/img/lilwayne-iamnotahumanbeing.jpg', data-artist='Lil Wayne', data-album='I Am Not A Human Being')
+    //-             img(src='/img/taylorswift-speaknow.jpg', data-artist='Taylor Swift', data-album='Speak Now')
+    //-             img(src='/img/thebandperry-thebandperry.jpg', data-artist='The Band Perry', data-album='The Band Perry')
+    //-             img(src='/img/maroon5-handsallover.jpg', data-artist='Maroon 5', data-album='Hands All Over')
+    //-             img(src='/img/mychemicalromance-dangerdays.jpg', data-artist='My Chemical Romance', data-album='Danger Days')
+    //-             img(src='/img/ironmaiden-thefinalfrontier.jpg', data-artist='Iron Maiden', data-album='The Final Frontier')
+    //-             img(src='/img/order of the black - black label society.jpg', data-artist='Order Of The Black', data-album='Black Label Society')
+    //-             img(src='/img/usher-raymondvraymond.jpg', data-artist='Usher', data-album='Raymond V Raymond')
+    //-         .imageCaption Sample Text
+    //-         #slider
+    //-         .demo-description
+    //-         .listholder
+    //-         #scroll-pane
+    //-           ul#sortable
+    //-         #slider-wrap
+    //-         #slider-vertical
+
+        //- .ContentFlow
+        //-   .loadIndicator
+        //-     .indicator
+        //-   .flow
+        //-     img.item(src="/img/photoMode.png")
+        //-     .caption photoMode
+        //-     img.item(src="/img/icon9@2x.png")
+        //-     .caption icon9
+        //-     img.item(src="/img/icon7.png")
+        //-     .caption icon7
+        //-     img.item(src="/img/recordnormalred.png")
+        //-     .caption recordnormalred
+        //-     img.item(src="/img/remove.png")
+        //-     .caption remove
+        //-     img.item(src="/img/selectButton.png")
+        //-     .caption selectButton
+        //-     img.item(src="/img/stopButton.png")
+        //-     .caption stopButton
+        //-     img.item(src="/img/takeButton.png")
+        //-     .caption takeButton
+
+        //-   .globalCaption
+        //-   .scrollbar
+        //-     .slider
+        //-       .position
+
     section#hot
       .row
         header
