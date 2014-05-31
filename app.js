@@ -28,7 +28,7 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
 
@@ -36,11 +36,13 @@ app.get('/', index.load);
 //app.post('/create', talk.create);
 app.post('/createTalk', talk.create);
 // app.post('/update', talk.update);
-app.get('/search', index.search);
-app.get('/load', index.load);
+
+app.post('/search', talk.search);
+
 //add the url of your function
 app.post('/show', talk.show);
 app.post('/vote', talk.update);
+app.post('/showProfile', talk.list);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
