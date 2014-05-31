@@ -7,16 +7,16 @@ var idx = lunr( function () {
 //field 是什麼？
 //添加索引
 var doc = {
-    'title' : 'Twelfth-Night love love love' ,
-    'body' : 'If music be the food of love, play on: Give me excess of it…' ,
-    'author' : 'William Shakespeare' ,
+    'title' : '不不 ' ,
+    'body' : '不' ,
+    'author' : '不不不' ,
     'id' : 2
 };
 idx.add(doc);
 //idx 裡有 pipeline
 
 //搜索可用單字搜尋！
-var result = idx.search( '不love' );
+var result = idx.search( '不' );
 
 console.log(result);
 //返回結果

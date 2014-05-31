@@ -28,12 +28,12 @@ $(function(){
     });
   });
   $('#search').click(function(){
-    $('#QQ').show();
-    $.post('/show',{
+    $('#talk').val();
+    $.post('/search',{
     }, function(res){
       console.log('haha', res);
     });
   });
-  
-  
-}); 
+
+
+});
