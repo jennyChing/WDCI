@@ -1,5 +1,5 @@
 $(function(){
-  
+
   $('#voteButton').click(function(){
     alert("Voted!");
   });
@@ -11,15 +11,14 @@ $(function(){
   });
 
   $('#search').click(function(){
+    $('#talk').val();
+    $.post('/search',{
     var talk = $('#talk');
     alert(talk.attr(value));
-    $('#QQ').show();
-    $.post('/show',{
     }, function(res){
       console.log('haha', res);
     });
   });
 
-  
-  
-}); 
+});
+

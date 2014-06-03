@@ -226,13 +226,12 @@ html
       .row
         header
           h1.span.glyphicon.glyphicon-thumbs-up
-          h1.hiUser Hello, #{userName}! 
+          h1.hiUser Hello, #{userName}!
           h4 以下是您支持過的講座！
         #profile-content.column.medium-12.small-10.small-centered(style="margin-top:20px;")
           .talkPicture
             img(src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
-            .talkTitle
-              東方神祕力量
+            .talkTitle 東方神祕力量
             .talkSpeaker 李嗣涔
             .talkNumberOfVotes 1234
 
@@ -301,6 +300,32 @@ html
             #base
             input#submit.button.radius(style='text-align:center;',type='button', value='提交', tabindex='3')
 
+      .row
+        header
+          h1 What is hot now?
+          h4 熱門的講座
+        .column.medium-12.small-10.small-centered(style="margin-top:20px;")
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
+            .talkTitle 東方神祕力量
+            .talkSpeaker 李嗣涔
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 1234
+
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
+            .talkTitle What is Hackathon?
+            .talkSpeaker 金子芮
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 38419
+
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
+            .talkTitle 第一次打政府臉就上手
+            .talkSpeaker 童盈超
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 68264
+
     section#category
       .row
         header
@@ -318,8 +343,7 @@ html
         #talk-content
           .talkPicture
             img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
-            .talkTitle
-              東方神祕力量
+            .talkTitle 東方神祕力量
             .talkSpeaker 李嗣涔
             button.btn.btn-info(, type='button') Vote
             .talkNumberOfVotes 1234
