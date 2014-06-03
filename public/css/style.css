@@ -332,6 +332,7 @@ section {
   position:relative;
   float:left;
   margin-left:5%;
+  cursor: pointer;
 }
 
 .talkTitle{
@@ -400,6 +401,25 @@ section {
   background: #FFF;
 }
 
+.popupContainer-talk-detail{
+  position:absolute;
+  width:640px;
+  height: auto;
+  left:45%;
+  top:80px;
+  background: #FFF;
+}
+
+.talk-detail h3{
+  text-align: left;
+}
+.talk-image img{
+  text-align:left;
+  border-radius:50px;
+  width:300px;
+  height:300px;
+}
+
 #modal_trigger {margin:100px auto; width:100px; display:block;}
 
 
@@ -417,7 +437,28 @@ a.btn_red {color: #FFF;}
 /* Popup Styles*/
 .popupHeader {font-size:16px; text-transform: uppercase;}
 .popupHeader {background:#F4F4F2; position:relative; padding:10px 20px; border-bottom:1px solid #DDD; font-weight:bold;}
-.popupHeader .modal_close {position: absolute; right: 0; top:0; padding:10px 15px; background:#E4E4E2; cursor: pointer; color:#aaa; font-size:16px;}
+.popupHeader .modal_close {
+  position: absolute; 
+  right: 0; 
+  top:0; 
+  padding:0px; 
+  background:#E4E4E2;
+  cursor: pointer; 
+  /*color:#aaa;*/ 
+  font-size:16px; 
+  /*background-image: url(../images/close-button.png);*/
+}
+.popupHeader .modal_close img{
+  width: 36px;
+  height: 36px;
+  padding: 0px;
+  margin: 0px;
+}
+.btn-vote{
+  display: block;
+  /*text-align: center;*/
+  margin: 0px 20% 0px 40%;
+}
 
 .popupBody {padding:20px;}
 
@@ -504,4 +545,10 @@ line-height: 1;
     /*float: left;*/
     font-weight: bold;
     margin: 20px 20px 20px 0;
+}
+.talk-image{
+  display: inline-block;
+}
+.talk-detail{
+  display: inline-block;
 }

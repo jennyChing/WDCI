@@ -24,7 +24,8 @@ var TalkSchema = new Schema({
         num: {type: Number, required: true},
         voter_id: [String]
     },
-    imageURL: { type: String}
+    imageURL: { type: String},
+    location: { type: String}
 });
 //create a model
 var Talk = mongoose.model('Talk', TalkSchema);
@@ -61,7 +62,8 @@ exports.create = function(req, res) {
         category: req.body.category,
         vote: {num: 0, voter_id:[]},
         description: req.body.description,
-        imageURL: req.body.imageURL
+        imageURL: req.body.imageURL,
+        location: req.body.location
     });
     talk.save(function (err, data){
         if(err) {
@@ -94,7 +96,7 @@ exports.update = function(req, res){
 
     console.log('req: ' + req.body);
 
-    Talk.update({_id: req.body.talk_id}, {$push: {'vote.voter_id': req.body.voter_id}, $inc: {'vote.num': 1}},
+    Talk.update({_id: req.body.talk_id}, {$addToSet: {'vote.voter_id': req.body.voter_id}, $inc: {'vote.num': 1}},
         function(err, result){
             //console.log('err:'+err);
             if(err) return err;

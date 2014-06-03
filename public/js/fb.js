@@ -31,7 +31,7 @@ function checkLoginState() {
 
 window.fbAsyncInit = function() {
 FB.init({
-  appId      :'727209207341563',
+  appId      :'739242972804853',
   cookie     : true,  // enable cookies to allow the server to access
                       // the session
   xfbml      : true,  // parse social plugins on this page
@@ -105,7 +105,9 @@ $(document).ready(function(){
   var talk_id = '';
   var type = '';
   var imageURL = '';
-  $(document).on('click', '#talk-content .talkPicture .btn', showDetail);
+  var location_type = '';
+  var category_type = '';
+  $(document).on('click', '#talk-content .talkPicture', showDetail);
   $('#img').hide();
   $("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
   $('.wid40.btn.btn-primary, .wid40.btn.btn-success, .wid40.btn.btn-warning').click(function(){
@@ -113,7 +115,8 @@ $(document).ready(function(){
     type = $(this).text();
     var category = {'category' : $(this).text()};
     var content = '';
-    var image = '<img style="width:200px; height:200px;border-radius:30px;" src="http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg" alt="hello!" class="open1 img-rounded;">';
+    var image1 = '<img style="width:200px; height:200px;border-radius:30px;" src="';
+    var image2 = '" alt="hello!" class="open1 img-rounded;">';
     if(type === '科技' || type === '生活' || type === '其他'){
       $.ajax({
         type:'POST',
@@ -124,11 +127,12 @@ $(document).ready(function(){
         if(response.message === 'ok'){
           response.result.forEach(function(element, index, array){
             console.log('index: ' + index + ' data:' + element.topic);
-            content += '<div class="talkPicture" talk_id='+ element._id + '>' + image + '<div class="talkTitle">' + element.topic
-              + '</div><div class="talkSpeaker">' + element.speaker + '</div><button , type="button" class="btn btn-info open1">Vote</button><div class="talkNumberOfVotes">'
+            content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
+              + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
               + element.vote.num + '</div> </div> '; 
           });
           $('#talk-content').html(content);
+          $('.talkPicture').leanModal({top: 200, overlay: 0.6, closeButton: ".modal_close"});
         }else{
           alert('No talks!!');
         }
@@ -160,7 +164,6 @@ $(document).ready(function(){
     modal: true,
     closeOnEscape: true,
     open: function(event, ui){
-
       if(topic !== null && speaker !== null){
         console.log('topic: '+ $('.dialog1').find('h3').text() + 'speaker: ' + $('.dialog1 .thumbnail .caption p').text());
         $('.dialog1').find('h3').text(topic);
@@ -174,7 +177,6 @@ $(document).ready(function(){
         var add = {
           'talk_id': $('.dialog1').find('h3').attr('talk_id'),
           'voter_id': localStorage.user_id };
-        //console.log('iddd: ' + $('.dialog1').find('h3').attr('talk_id'));
         $.ajax({
           type:'POST',
           url:'/vote',
@@ -200,21 +202,28 @@ $(document).ready(function(){
     }
   });
   function showDetail(){
-    console.log('click!!!!!');
-    var prev = $(this).parent('.talkPicture');
-    console.log('id: ' + prev.attr('talk_id'));
-    talk_id = prev.attr('talk_id');
-    topic = prev.find('.talkTitle').text();
-    speaker = prev.find('.talkSpeaker').text();
-    //$('.dialog1').find('h3').val(prev.find('.talkTitle').text());
-    //$('.dialog1 .thumbnail .caption p').val(prev.find('.talkSpeaker').text());
-    $('.dialog1').dialog('open'); 
+    $('#talk-image-img').attr('src', $(this).find('img').attr('src'));
+    $('.btn-vote').attr('talk_id', $(this).attr('talk_id'));
+    var topic_text = $('.talk-detail #detail-topic').text(); 
+    topic_text += $(this).find('.talkTitle').text();
+    $('.talk-detail #detail-topic').text(topic_text);
+    var speaker_text = $('.talk-detail #detail-speaker').text(); 
+    speaker_text += $(this).find('.talkSpeaker').text();
+    $('.talk-detail #detail-speaker').text(speaker_text);
+    var location_text = $('.talk-detail #detail-dest').text();
+    location_text += $(this).find('.talkTitle').attr('location');
+    $('.talk-detail #detail-dest').text(location_text);
+    var info_text = $('.talk-detail #detail-info').text();
+    info_text += $(this).find('.talkSpeaker').attr('info');
+    $('.talk-detail #detail-info').text(info_text);
+
   }
   function refreshCatergory(){
     if(type.length !== 0){ 
       var category = { 'category' : type};
       var content = '';
-      var image = '<img style="width:200px; height:200px;border-radius:30px;" src="http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg" alt="hello!" class="open1 img-rounded;">';
+      var image1 = '<img style="width:200px; height:200px;border-radius:30px;" src="';
+      var image2 = '" alt="hello!" class="open1 img-rounded;">';
       $.ajax({
         type:'POST',
         dataType:'JSON',
@@ -224,25 +233,26 @@ $(document).ready(function(){
         if(response.message === 'ok'){
           response.result.forEach(function(element, index, array){
             console.log('index: ' + index + ' data:' + element.topic);
-            content += '<div class="talkPicture" talk_id='+ element._id + '>' + image + '<div class="talkTitle">' + element.topic
-              + '</div><div class="talkSpeaker">' + element.speaker + '</div><button , type="button" class="btn btn-info open1">Vote</button><div class="talkNumberOfVotes">'
+            content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
+              + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
               + element.vote.num + '</div> </div> '; 
           });
           $('#talk-content').html(content);
-          
+          $('.talkPicture').leanModal({top: 200, overlay: 0.6, closeButton: ".modal_close"});
         }
       });
     }
   }
   function refreshProfile(){
     console.log('iiid: ' + localStorage.user_id);
-    if(localStorage.user_id.length > 0){
+    if(typeof localStorage.user_id !== "undefined"){
       var getProfile = {
         'user_id' : localStorage.user_id,
         'user_name' : localStorage.user_name
       };
       var content = '';
-      var image = '<img style="width:200px; height:200px;border-radius:30px;" src="http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg" alt="hello!" class="open1 img-rounded;">';
+      var image1 = '<img style="width:200px; height:200px;border-radius:30px;" src="';
+      var image2 = '" alt="hello!" class="open1 img-rounded;">';
       $.ajax({
         type: 'POST',
         url: '/showProfile',
@@ -252,38 +262,53 @@ $(document).ready(function(){
         if(response.message === 'ok'){
           response.result.forEach(function(element, index, array){
             console.log('index: ' + index + ' data:' + element.topic);
-            content += '<div class="talkPicture" talk_id='+ element._id + '>' + image + '<div class="talkTitle">' + element.topic
-              + '</div><div class="talkSpeaker">' + element.speaker + '</div><button , type="button" class="btn btn-info open1">Vote</button><div class="talkNumberOfVotes">'
+            content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
+              + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
               + element.vote.num + '</div> </div> '; 
           });
           $('#profile-content').html(content);
+          $('.talkPicture').leanModal({top: 200, overlay: 0.6, closeButton: ".modal_close"});
           console.log('name: ' + $('#profile .hiUser').text());
           $('#profile .hiUser').text('Hello, '+ localStorage.user_name);
         }
       });
     }
   }
-  var category_type = '';
-  $('select').prop('selectedIndex', -1);
-  $('select').change(function(){
-  $('select option:selected').each(function(){
+  
+  $('select[id="select_category"]').prop('selectedIndex', 0);
+  $('select[id="select_location"]').prop('selectedIndex', 0);
+  
+  $('select[id="select_category"]').change(function(){
+    $('select[id="select_category"] option:selected').each(function(){
       category_type = $(this).text();
       console.log(category_type);
     });
   });
+
+  $('select[id="select_location"]').change(function(){
+    $('select[id="select_location"] option:selected').each(function(){
+      location_type = $(this).text();
+      console.log('location: ' + location_type);
+    });
+  });
+
+
   $('#submit').click(function(){
     var new_topic = $('#topic').val();
     var new_speaker = $('#speaker').val();
     var new_category = category_type;
     var new_description = $('#description').val();
-    if(new_topic !== null && new_speaker !== null && new_category !== null && new_description !== null){
+    var new_location = location_type;
+    var image_url = $('#img').attr('src');
+    if(new_topic !== null && new_speaker !== null && new_category !== null && new_description !== null && new_location !== null && image_url !== null){
       $.post('/createTalk',{
         topic: new_topic,
         speaker: new_speaker,
         category: category_type,
         description: new_description,
         host_id: localStorage.user_id,
-        imageURL: $('#base').text()
+        imageURL: image_url,
+        location: location_type
       }, function(msg){
         alert('感謝您，已加入！')
         refreshProfile();

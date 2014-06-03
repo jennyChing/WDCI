@@ -197,6 +197,7 @@ html
         header.popupHeader
           span.header_title Login
           span.modal_close
+            img(src='/images/close-button.png')
             i.fa.fa-times
         section.popupBody
           div.social_login
@@ -205,6 +206,22 @@ html
                 span.icon
                   i.fa.fa-facebook
                 span.icon_title Connect with Facebook
+      div#show-detail.popupContainer-talk-detail(style='display:none;')
+        header.popupHeader
+          span.header_title 詳細資訊
+          span.modal_close
+            img(src='/images/close-button.png')
+            i.fa.fa-times
+        section.popupBody
+          div.talk-image
+            img(id="talk-image-img", src="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xpa1/t1.0-9/72807_736689643016995_772469513_n.jpg")
+          div.talk-detail
+            h3#detail-speaker 演講者：
+            h3#detail-topic 演講主題：
+            h3#detail-dest 演講地點：
+            h3#detail-info 演講資訊：
+            span fuck fuck fuck
+            button.btn-vote.btn.btn-info(type='button') Vote
     section#profile
       .row
         header
@@ -263,12 +280,12 @@ html
             input#topic(type='text', name='topic', placeholder='輸入講座主題')
             input#speaker(type='text', name='speaker', placeholder='輸入演講者')
             //input#category(type='text', name='category', placeholder='輸入演講者類別')
-            select(name="selectCategory")
+            select(name="selectCategory", id='select_category')
               option(value=" " , selected='selected', disabled='disabled', id='placeholder') 選擇分類
               option(value="科技") 科技
               option(value="生活") 生活
               option(value="其他") 其他
-            select(name="selectLocation")
+            select(name="selectLocation", id='select_location')
               option(value=" " , selected='selected', disabled='disabled', id='placeholder') 選擇地區
               option(value="科技") 北部
               option(value="生活") 中部
