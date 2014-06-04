@@ -54,13 +54,11 @@ html
             li
               input#talk(type='text', name='talk', placeholder='欲查詢的講座', tabindex='1')
             li
-              a(href='/#main') 搜尋
+              a(href='/#talk') 搜尋
             li
-              a(href='/#talks') 講座
+              a(href='#faq') 創立講座
             li
-              a(href='/#faq') 問題
-            li
-              a(href='/#pricing') 熱門講座
+              a(href='#hothot') 熱門講座
 
             - if (!user)
               li
@@ -76,43 +74,44 @@ html
                 p=user.email
               li
                 a(href='/logout') 登出
-    section.flowEverything
-      .row
-        header
-          h1 What is hot now?
-          h4 熱門的講座
-          #contentFlow.ContentFlow
-            .loadIndicator
-              .indicator
-            .flow
-              .item
-                img.content(src="https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg")
-                .caption selectButton
-              .item
-                img.content(src="https://dl.dropboxusercontent.com/u/79375953/Photo%2012-10-4%20%E4%B8%8B%E5%8D%884%2057%2032.jpg")
-                .caption remove
-              .item
-                img.content(src="https://dl.dropboxusercontent.com/u/79375953/Folder.jpg")
-                .caption recovery-recovery
-              .item
-                img.content(src="http://images.jrj.com.cn/2009/04/20090407130620812.jpg")
-                .caption takeButton
-              .item
-                img.content(src="http://www.planeboy.net/wp-content/uploads/2010/05/jobs.jpg")
-                .caption takeButton
-              .item
-                img.content(src="http://photocdn.sohu.com/20080409/Img256185997.jpg")
-                .caption takeButton
-              .item
-                img.content(src="http://a1.att.hudong.com/53/61/01000000000000119086153649953.jpg")
-                .caption takeButton
-              .item
-                img.content(src="http://image2.sina.com.cn/IT/it/2007-04-19/U1788P2T1D1474071F9DT20070419143346.jpg")
-                .caption takeButton
-            .globalCaption
-            .scrollbar
-              .slider
-                .position
+    section#main
+      section.flowEverything#hothot
+        .row
+          header
+            h1 What is hot now?
+            h4 熱門的講座
+            #contentFlow.ContentFlow
+              .loadIndicator
+                .indicator
+              .flow
+                .item
+                  img.content(src="https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg")
+                  .caption selectButton
+                .item
+                  img.content(src="https://dl.dropboxusercontent.com/u/79375953/Photo%2012-10-4%20%E4%B8%8B%E5%8D%884%2057%2032.jpg")
+                  .caption remove
+                .item
+                  img.content(src="https://dl.dropboxusercontent.com/u/79375953/Folder.jpg")
+                  .caption recovery-recovery
+                .item
+                  img.content(src="http://images.jrj.com.cn/2009/04/20090407130620812.jpg")
+                  .caption takeButton
+                .item
+                  img.content(src="http://www.planeboy.net/wp-content/uploads/2010/05/jobs.jpg")
+                  .caption takeButton
+                .item
+                  img.content(src="http://photocdn.sohu.com/20080409/Img256185997.jpg")
+                  .caption takeButton
+                .item
+                  img.content(src="http://a1.att.hudong.com/53/61/01000000000000119086153649953.jpg")
+                  .caption takeButton
+                .item
+                  img.content(src="http://image2.sina.com.cn/IT/it/2007-04-19/U1788P2T1D1474071F9DT20070419143346.jpg")
+                  .caption takeButton
+              .globalCaption
+              .scrollbar
+                .slider
+                  .position
     //- section#contentFlow
     //-   .row
     //-     .pageWrapper
@@ -269,7 +268,7 @@ html
       //-   div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;') What is Hackathon?
       //-   button.btn.btn-info(style='left: 34%;', type='button') Vote
       //-   div(style='text-align: center; padding-top: 10px;') 999999
-    section#talks
+    section#faq.black
 
       .row
         header
