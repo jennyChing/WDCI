@@ -8,7 +8,7 @@ exports.index = function(req, res){
 
 exports.load = function(req, res){
 	// home page to
-    res.render('front_layout',{userName: "Wilosn Huang"});
+    res.render('front_layout',{userName: "Anonymous"});
 };
 
 exports.search = function(req, res){
@@ -18,8 +18,6 @@ exports.search = function(req, res){
 			if(err) console.error(err);
 		});
 	});
-
-
 };
 
 exports.userAuth = function(req, res){

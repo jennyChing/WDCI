@@ -14,7 +14,7 @@ var lunr = require('lunr');
 var TalkSchema = new Schema({
 
     id: { type: String},
-    host_id: {type: String},
+    host_id: {type: String, required: true},
     topic: { type: String, required: true},
     status: { type: Boolean},
     speaker: { type: String, required: true},
@@ -24,7 +24,8 @@ var TalkSchema = new Schema({
         num: {type: Number, required: true},
         voter_id: [String]
     },
-    imageURL: { type: String}
+    imageURL: { type: String},
+    location: { type: String}
 });
 //create a model
 var Talk = mongoose.model('Talk', TalkSchema);
@@ -58,10 +59,11 @@ exports.create = function(req, res) {
         host_id: req.body.host_id,
         topic: req.body.topic,
         speaker: req.body.speaker,
+        location: req.body.locaiton,
         category: req.body.category,
         vote: {num: 0, voter_id:[]},
         description: req.body.description,
-        imageURL: req.body.imageURL
+        imageURL: req.body.imageURL,
     });
     talk.save(function (err, data){
         if(err) {
@@ -90,13 +92,27 @@ exports.show = function(req, res) {
     });
 };
 
+exports.showhot = function(req, res){
+    console.log('show hot');
+    Talk.find({}, null, {
+        limit: 8,
+        sort:{
+            'vote.num': -1
+        }
+    },function(err, items){
+        console.log(err);
+        console.log(items);
+        res.send(items);
+    })
+};
+
 exports.update = function(req, res){
 
-    console.log('req: ' + req.body);
+    //console.log('req: ' + req.body);
 
-    Talk.update({_id: req.body.talk_id}, {$push: {'vote.voter_id': req.body.voter_id}, $inc: {'vote.num': 1}},
+    Talk.update({_id: req.body.talk_id}, {$addToSet: {'vote.voter_id': req.body.voter_id}, $inc: {'vote.num': 1}},
         function(err, result){
-            //console.log('err:'+err);
+            console.log('err:'+err);
             if(err) return err;
             console.log('result: '+ JSON.stringify(result));
             if(result > 0){
@@ -110,35 +126,54 @@ exports.update = function(req, res){
 //抓出 database 的資料再塞進 doc 裡
 exports.search = function(req, res){
     console.log('search');
-    var idx = lunr( function () {
-        this .field( 'topic' , { boost: 10 });
-        this .field( 'speaker', { boost: 10 });
-        this .field( 'description', { boost: 10 });
-    });
+     // var idx = lunr( function () {
+     //            this .field( 'topic' );
+     //            this .field( 'speaker');
+     //            this .field( 'description');
+     //        });
     var doc = [];
-    //-mongo find
-    Talk.find( {}, function (err, talk) {
+    //-mongo find and push to doc
+    var str = req.body.talk;
+    Talk.find( {$or : [{'topic' : str,
+                        'speaker': str,
+                        'description': str}], }, function (err, talk) {
         if(err) {
             console.error(err);
         }
-        console.log('search:'+talk);
+
+        //console.log('search:'+talk);
         res.send({
             'search': talk
         });
         talk.forEach(function(element, index, array){
 
-            doc.push(element);
-            console.log('link to lunr:', element);
-            //每次抓一個 object, 丟進 lunr idx 中
+            //doc.push(element);
+            //idx.add(element);
+            var idx = lunr( function () {
+                this .field( 'topic' );
+                this .field( 'speaker');
+                this .field( 'description');
+            });
+            var search_data = {
+                'topic': element.topic,
+                'speaker': element.speaker,
+                'description': element.description,
+                'id' : element._id
+            };
+            //idx.add(search_data);
+            console.log('link to lunr:', search_data);
+            //var result = idx.search( 'hack' );
+            //console.log('very improtant', result);
+
         });
+        //console.log('doc: ', doc);
+        // var result = idx.search( 'hack' );
+        // console.log('very improtant', result);
+        //搜索, 出現 _ref & score>> 這邊壞掉
+
     });
 
-    console.log('doc: ', doc);
-    idx.add(doc);
 
-    //搜索, 出現 _ref & score>> 這邊壞掉
-    var result = idx.search( 'Hackathon' );
-    console.log('very improtant', result);
 
 };
 // return
