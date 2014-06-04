@@ -399,7 +399,7 @@ section {
   background: #FFF;
 }
 
-#modal_trigger {margin:100px auto; width:100px; display:block;}
+#modal_trigger {margin: auto; width:100px; display:block;}
 
 
 .btn_red {background: #ED6347; color: #FFF;}
