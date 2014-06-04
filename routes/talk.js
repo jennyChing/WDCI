@@ -14,7 +14,7 @@ var lunr = require('lunr');
 var TalkSchema = new Schema({
 
     id: { type: String},
-    host_id: {type: String},
+    host_id: {type: String, required: true},
     topic: { type: String, required: true},
     status: { type: Boolean},
     speaker: { type: String, required: true},
@@ -90,6 +90,20 @@ exports.show = function(req, res) {
             'message':'ok',
             'result': talk});
     });
+};
+
+exports.showhot = function(req, res){
+    console.log('show hot');
+    Talk.find({}, null, {
+        limit: 8,
+        sort:{
+            'vote.num': -1
+        }
+    },function(err, items){
+        console.log(err);
+        console.log(items);
+        res.send(items);
+    })
 };
 
 exports.update = function(req, res){

@@ -73,7 +73,7 @@ function testAPI() {
     console.log('Successful login for: ' + response.name);
     console.log('ID: '+ response.id);
     console.log('HI: '+ response.first_name);
-    alert('Hi: '+ response.first_name);
+    //alert('Hi: '+ response.first_name);
     getUserId(response.id, response.name);
     document.getElementById('status').innerHTML =
       'Thanks for logging in, ' + response.name + '!';
@@ -108,6 +108,8 @@ $(document).ready(function(){
   var location_type = '';
   var category_type = '';
   $(document).on('click', '#talk-content .talkPicture', showDetail);
+  $(document).on('click', '.item', showDetail_v2);
+  $(document).on('click', '.btn-vote', vote);
   $('#img').hide();
   $("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
   $('.wid40.btn.btn-primary, .wid40.btn.btn-success, .wid40.btn.btn-warning').click(function(){
@@ -157,67 +159,103 @@ $(document).ready(function(){
   $("#asd").change(function(){
     readImage(this);
   });
-  $('.dialog1').dialog({
-    width: 1000,
-    height: 600,
-    autoOpen: false,
-    modal: true,
-    closeOnEscape: true,
-    open: function(event, ui){
-      if(topic !== null && speaker !== null){
-        console.log('topic: '+ $('.dialog1').find('h3').text() + 'speaker: ' + $('.dialog1 .thumbnail .caption p').text());
-        $('.dialog1').find('h3').text(topic);
-        $('.dialog1').find('h3').attr('talk_id', talk_id);
-        $('.dialog1 .thumbnail .caption p').text(speaker);
-      }
-    },
-    buttons:[{
-      text: 'Vote',
-      click: function(){
-        var add = {
-          'talk_id': $('.dialog1').find('h3').attr('talk_id'),
-          'voter_id': localStorage.user_id };
-        $.ajax({
-          type:'POST',
-          url:'/vote',
-          data: add,
-          dataType:'JSON'
-        }).done(function(response){
-          if(response.message === 'ok'){
-            //$(this).dialog('close');
-            console.log('vote ok');
-            refreshCatergory();
-          }  
-        });
-        $(this).dialog('close');
-      }
-    }],
-    show: {
-      effect: "drop",
-      duration: 500
-    },
-    hide: {
-      effect:"drop",
-      duration: 500
+  function showName(){
+    if(typeof localStorage.user_name !== 'undefined' && localStorage.user_name.length > 0){
+      $('#login').css('display', 'none');
+      $('#username').text(localStorage.user_name).show();
     }
-  });
+  }
+  showName();
+  // $('.dialog1').dialog({
+  //   width: 1000,
+  //   height: 600,
+  //   autoOpen: false,
+  //   modal: true,
+  //   closeOnEscape: true,
+  //   open: function(event, ui){
+  //     if(topic !== null && speaker !== null){
+  //       console.log('topic: '+ $('.dialog1').find('h3').text() + 'speaker: ' + $('.dialog1 .thumbnail .caption p').text());
+  //       $('.dialog1').find('h3').text(topic);
+  //       $('.dialog1').find('h3').attr('talk_id', talk_id);
+  //       $('.dialog1 .thumbnail .caption p').text(speaker);
+  //     }
+  //   },
+  //   buttons:[{
+  //     text: 'Vote',
+  //     click: function(){
+  //       var add = {
+  //         'talk_id': $('.dialog1').find('h3').attr('talk_id'),
+  //         'voter_id': localStorage.user_id };
+  //       $.ajax({
+  //         type:'POST',
+  //         url:'/vote',
+  //         data: add,
+  //         dataType:'JSON'
+  //       }).done(function(response){
+  //         if(response.message === 'ok'){
+  //           //$(this).dialog('close');
+  //           console.log('vote ok');
+  //           refreshCatergory();
+  //         }  
+  //       });
+  //       $(this).dialog('close');
+  //     }
+  //   }],
+  //   show: {
+  //     effect: "drop",
+  //     duration: 500
+  //   },
+  //   hide: {
+  //     effect:"drop",
+  //     duration: 500
+  //   }
+  // });
+  function vote(){
+    if(typeof localStorage.user_id !== 'undefined' && localStorage.user_id.length > 0){
+      var add = {
+        'talk_id' : $(this).attr('talk_id'),
+        'voter_id' : localStorage.user_id 
+      };
+      $.ajax({
+        type: 'POST',
+        url: '/vote',
+        data: add, 
+        dataType: 'JSON'
+      }).done(function(response){
+        if(response.message === 'ok'){
+          console.log('vote ok ');
+          refreshCatergory();
+          refreshProfile();
+          refreshHot();
+        }
+      });
+    }else{
+      alert('Please log in first');
+    }
+  }
   function showDetail(){
-    $('#talk-image-img').attr('src', $(this).find('img').attr('src'));
-    $('.btn-vote').attr('talk_id', $(this).attr('talk_id'));
-    var topic_text = $('.talk-detail #detail-topic').text(); 
-    topic_text += $(this).find('.talkTitle').text();
-    $('.talk-detail #detail-topic').text(topic_text);
-    var speaker_text = $('.talk-detail #detail-speaker').text(); 
-    speaker_text += $(this).find('.talkSpeaker').text();
-    $('.talk-detail #detail-speaker').text(speaker_text);
-    var location_text = $('.talk-detail #detail-dest').text();
-    location_text += $(this).find('.talkTitle').attr('location');
-    $('.talk-detail #detail-dest').text(location_text);
-    var info_text = $('.talk-detail #detail-info').text();
-    info_text += $(this).find('.talkSpeaker').attr('info');
-    $('.talk-detail #detail-info').text(info_text);
+    var count = $('.talk-detail #detail-topic').text().split('：');
+    console.log('c: '+count.length);
+    if(count[1].length === 0){
+      $('#talk-image-img').attr('src', $(this).find('img').attr('src'));
+      $('.btn-vote').attr('talk_id', $(this).attr('talk_id'));
+      var topic_text = $('.talk-detail #detail-topic').text(); 
+      topic_text += $(this).find('.talkTitle').text();
+      $('.talk-detail #detail-topic').text(topic_text);
+      var speaker_text = $('.talk-detail #detail-speaker').text(); 
+      speaker_text += $(this).find('.talkSpeaker').text();
+      $('.talk-detail #detail-speaker').text(speaker_text);
+      var location_text = $('.talk-detail #detail-dest').text();
+      location_text += $(this).find('.talkTitle').attr('location');
+      $('.talk-detail #detail-dest').text(location_text);
+      var info_text = $('.talk-detail #detail-info').text();
+      info_text += $(this).find('.talkSpeaker').attr('info');
+      $('.talk-detail #detail-info').text(info_text);
+    }
 
   }
+
+
   function refreshCatergory(){
     if(type.length !== 0){ 
       var category = { 'category' : type};
@@ -243,6 +281,60 @@ $(document).ready(function(){
       });
     }
   }
+  function showDetail_v2(){
+    console.log('v2 v2');
+    var count = $('.talk-detail #detail-topic').text().split('：');
+    console.log('c: '+count.length);
+    if(count[1].length === 0){
+      $('#talk-image-img').attr('src', $(this).find('canvas').attr('src'));
+      $('.btn-vote').attr('talk_id', $(this).attr('talk_id'));
+      var result = $(this).find('.caption').text().split('\n');
+      var topic_text = $('.talk-detail #detail-topic').text(); 
+      topic_text += result[0];
+      $('.talk-detail #detail-topic').text(topic_text);
+      var speaker_text = $('.talk-detail #detail-speaker').text(); 
+      speaker_text += result[1];
+      $('.talk-detail #detail-speaker').text(speaker_text);
+      var location_text = $('.talk-detail #detail-dest').text();
+      location_text += result[2];
+      $('.talk-detail #detail-dest').text(location_text);
+      var info_text = $('.talk-detail #detail-info').text();
+      info_text += $(this).find('.caption').attr('info');
+      $('.talk-detail #detail-info').text(info_text);
+    }
+  }
+
+  function refreshHot(){
+    console.log('refresh hot');
+    var content = '';
+    var content_part1 = '<div class="item" href="#show-detail" talk_id="';
+    var content_part1_1 = '"><img src="';
+    var content_part2 = '" class="content"/><div class="caption" info="';
+    var content_part2_2 = '">';
+    var content_part3 = '</div></div>';
+    var caption_text = '';
+    //var count = 0;
+    //var hotData = [];
+    $.getJSON('/showhot', function(data){
+      //hotData = data;
+      $.each(data, function(){
+        console.log('topic: '+ this.topic + ', speaker: '+this.speaker);
+        caption_text = this.topic + '\n' + this.speaker + '\n' + this.location; 
+        content += content_part1;
+        content += this._id;
+        content += content_part1_1; 
+        content += this.imageURL;
+        content += content_part2;
+        content += this.description;
+        content += content_part2_2;
+        content += caption_text;
+        content += content_part3;
+      });
+      $('.flow').html(content);
+      $('.item').leanModal({top: 200, overlay: 0.6, closeButton: ".modal_close"});
+    }); 
+  }
+  refreshHot();
   function refreshProfile(){
     console.log('iiid: ' + localStorage.user_id);
     if(typeof localStorage.user_id !== "undefined"){
@@ -300,29 +392,35 @@ $(document).ready(function(){
     var new_description = $('#description').val();
     var new_location = location_type;
     var image_url = $('#img').attr('src');
-    if(new_topic !== null && new_speaker !== null && new_category !== null && new_description !== null && new_location !== null && image_url !== null){
-      $.post('/createTalk',{
-        topic: new_topic,
-        speaker: new_speaker,
-        category: category_type,
-        description: new_description,
-        host_id: localStorage.user_id,
-        imageURL: image_url,
-        location: location_type
-      }, function(msg){
-        alert('感謝您，已加入！')
-        refreshProfile();
-        console.log(topic);
-      });
+    if(typeof localStorage.user_id !== 'undefined'){
+      if(new_topic !== null && new_speaker !== null && new_category !== null && new_description !== null && new_location !== null && image_url !== null){
+        $.post('/createTalk',{
+          topic: new_topic,
+          speaker: new_speaker,
+          category: category_type,
+          description: new_description,
+          host_id: localStorage.user_id,
+          imageURL: image_url,
+          location: location_type
+        }, function(msg){
+          alert('感謝您，已加入！')
+          refreshProfile();
+          console.log(topic);
+        });
+      }
     }
   });
-  $('#search').click(function(){
-    $('#QQ').show();
-    $.post('/show',{
-    }, function(res){
-      console.log('haha', res);
-    });
+  $('.btn-vote').click(function(){
+
   });
+
+  // $('#search').click(function(){
+  //   $('#QQ').show();
+  //   $.post('/show',{
+  //   }, function(res){
+  //     console.log('haha', res);
+  //   });
+  // });
   refreshProfile();
   $("#login_form").click(function(){
       $(".social_login").hide();

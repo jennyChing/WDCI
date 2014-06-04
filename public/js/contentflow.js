@@ -596,7 +596,7 @@ ContentFlow.prototype = {
                 if (C) {
                     window.open(A, C).focus()
                 } else {
-                    window.location.href = A
+                    //window.location.href = A
                 }
             }
         },
