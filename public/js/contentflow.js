@@ -545,8 +545,8 @@ ContentFlow.prototype = {
         activeElement: "content",
         maxItemHeight: 0,
         scaleFactor: 1,
-        scaleFactorLandscape: 1.33,
-        scaleFactorPortrait: 1,
+        scaleFactorLandscape: 1.6,
+        scaleFactorPortrait: 1.2,
         fixItemSize: false,
         relativeItemPosition: "top center",
         circularFlow: true,
@@ -555,9 +555,9 @@ ContentFlow.prototype = {
         endOpacity: 1,
         startItem: "center",
         scrollInFrom: "pre",
-        flowSpeedFactor: 1,
-        flowDragFriction: 1,
-        scrollWheelSpeed: 1,
+        flowSpeedFactor: 0.8,
+        flowDragFriction: 0,
+        scrollWheelSpeed: 0.5,
         keys: {
             13: function () {
                 this.conf.onclickActiveItem(this._activeItem)

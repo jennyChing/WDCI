@@ -59,11 +59,11 @@ exports.create = function(req, res) {
         host_id: req.body.host_id,
         topic: req.body.topic,
         speaker: req.body.speaker,
+        location: req.body.locaiton,
         category: req.body.category,
         vote: {num: 0, voter_id:[]},
         description: req.body.description,
         imageURL: req.body.imageURL,
-        location: req.body.location
     });
     talk.save(function (err, data){
         if(err) {
