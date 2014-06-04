@@ -107,7 +107,7 @@ $(document).ready(function(){
   var imageURL = '';
   var location_type = '';
   var category_type = '';
-  $(document).on('click', '#talk-content .talkPicture', showDetail);
+  $(document).on('click', '#talk-content .talkPicture, #profile-content .talkPicture', showDetail);
   $(document).on('click', '.item', showDetail_v2);
   $(document).on('click', '.btn-vote', vote);
   $('#img').hide();
@@ -130,7 +130,7 @@ $(document).ready(function(){
           response.result.forEach(function(element, index, array){
             console.log('index: ' + index + ' data:' + element.topic);
             element.vote.num = element.vote.voter_id.length;
-            content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
+            content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + '北部' + '">' + element.topic
               + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
               + element.vote.num + '</div> </div> ';
           });
@@ -277,7 +277,7 @@ $(document).ready(function(){
           response.result.forEach(function(element, index, array){
             console.log('index: ' + index + ' data:' + element.topic);
             element.vote.num = element.vote.voter_id.length;
-            content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
+            content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + '北部' + '">' + element.topic
               + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
               + element.vote.num + '</div> </div> ';
           });
@@ -294,14 +294,14 @@ $(document).ready(function(){
     var topic_title = '演講主題：';
     var loc_title = '演講地點：';
     var info_title = '演講資訊：';
-    var result = $(this).find('.caption').text().split('\n');
+    var result = $(this).find('.caption').text();
     $('#talk-image-img').attr('src', $(this).find('canvas').attr('src'));
     $('.btn-vote').attr('talk_id', $(this).attr('talk_id'));
-    var topic_text = topic_title + result[0];
+    var topic_text = topic_title + result;
     $('.talk-detail #detail-topic').text(topic_text); 
-    var speaker_text = speaker_title + result[1];
+    var speaker_text = speaker_title + $(this).find('.caption').attr('speaker');
     $('.talk-detail #detail-speaker').text(speaker_text);
-    var location_text = loc_title + result[2];
+    var location_text = loc_title + $(this).find('.caption').attr('location');
     $('.talk-detail #detail-dest').text(location_text);
     var info_text = info_title + $(this).find('.caption').attr('info');
     $('.talk-detail #detail-info').text(info_text);
@@ -312,9 +312,10 @@ $(document).ready(function(){
     var content = '';
     var content_part1 = '<div class="item" href="#show-detail" talk_id="';
     var content_part1_1 = '"><img src="';
-    var content_part2 = '" class="content"/><div class="caption" info="';
-    var content_part2_2 = '" location="'+ this.location +'>';
-    var content_part3 = '</div></div>';
+    var content_part2 = '" class="content"/><div class="caption" speaker="';
+    var content_part2_3 = '" info="';
+    var content_part2_2 = '" location="';
+    var content_part3 = '></div></div>';
     var caption_text = '';
     //var count = 0;
     //var hotData = [];
@@ -323,16 +324,19 @@ $(document).ready(function(){
       console.log('hot hot hot');
       $.each(data, function(){
         console.log('topic: '+ this.topic + ', speaker: '+this.speaker);
-        caption_text = this.topic + '\n' + this.speaker + '\n' + this.location; 
+        caption_text = this.topic; 
         content += content_part1;
         content += this._id;
         content += content_part1_1; 
         content += this.imageURL;
         content += content_part2;
+        content += this.speaker;
+        content += content_part2_3;
         content += this.description;
         content += content_part2_2;
-        content += caption_text;
-        content += content_part3;
+        content += '北部';
+        //content += caption_text;
+        content += ('">' + caption_text + '</div></div>');
       });
       $('.flow').html(content);
       $('.item').leanModal({top: 200, overlay: 0.6, closeButton: ".modal_close"});
@@ -359,7 +363,7 @@ $(document).ready(function(){
           response.result.forEach(function(element, index, array){
             console.log('index: ' + index + ' data:' + element.vote.voter_id);
             element.vote.num = element.vote.voter_id.length;
-            content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
+            content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + '北部' + '">' + element.topic
               + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
               + element.vote.num + '</div> </div> ';
           });
@@ -396,25 +400,33 @@ $(document).ready(function(){
     var new_category = category_type;
     var new_description = $('#description').val();
     var new_location = location_type;
+    console.log('jizzz: '+new_location);
     var image_url = $('#img').attr('src');
     if(typeof localStorage.user_id !== 'undefined'){
       if(new_topic !== null && new_speaker !== null && new_category !== null && new_description !== null && new_location !== null && image_url !== null){
-        $.post('/createTalk',{
-          topic: new_topic,
-          speaker: new_speaker,
-          category: category_type,
-          description: new_description,
-          host_id: localStorage.user_id,
-          imageURL: image_url,
-          location: location_type
-        }, function(msg){
+        var talk_work = {
+          'topic': new_topic,
+          'speaker': new_speaker,
+          'category': category_type,
+          'description': new_description,
+          'host_id': localStorage.user_id,
+          'imageURL': image_url,
+          'location': new_location
+        };
+        $.ajax({
+          url:'/createTalk',
+          type:'POST',
+          data: talk_work,
+          dataType: 'JSON'
+        }).done(function(msg){
           //alert('感謝您，已加入！')
           $('#subForm input').val('');
+          $('#submit').val('提交');
           $('#subForm img').attr('src', '');
           $('select[id="select_category"]').prop('selectedIndex', 0);
           $('select[id="select_location"]').prop('selectedIndex', 0);
           refreshProfile();
-          refreshHot();
+          //refreshHot();
           refreshCatergory();
           console.log(topic);
         });
