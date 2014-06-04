@@ -99,7 +99,7 @@ function getUserName(){
 }
 
 
-$(document).ready(function(){ 
+$(document).ready(function(){
   var topic = '';
   var speaker = '';
   var talk_id = '';
@@ -131,7 +131,7 @@ $(document).ready(function(){
             console.log('index: ' + index + ' data:' + element.topic);
             content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
               + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
-              + element.vote.num + '</div> </div> '; 
+              + element.vote.num + '</div> </div> ';
           });
           $('#talk-content').html(content);
           $('.talkPicture').leanModal({top: 200, overlay: 0.6, closeButton: ".modal_close"});
@@ -252,12 +252,11 @@ $(document).ready(function(){
       info_text += $(this).find('.talkSpeaker').attr('info');
       $('.talk-detail #detail-info').text(info_text);
     }
-
   }
 
 
   function refreshCatergory(){
-    if(type.length !== 0){ 
+    if(type.length !== 0){
       var category = { 'category' : type};
       var content = '';
       var image1 = '<img style="width:200px; height:200px;border-radius:30px;" src="';
@@ -273,7 +272,7 @@ $(document).ready(function(){
             console.log('index: ' + index + ' data:' + element.topic);
             content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
               + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
-              + element.vote.num + '</div> </div> '; 
+              + element.vote.num + '</div> </div> ';
           });
           $('#talk-content').html(content);
           $('.talkPicture').leanModal({top: 200, overlay: 0.6, closeButton: ".modal_close"});
@@ -356,7 +355,7 @@ $(document).ready(function(){
             console.log('index: ' + index + ' data:' + element.topic);
             content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
               + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
-              + element.vote.num + '</div> </div> '; 
+              + element.vote.num + '</div> </div> ';
           });
           $('#profile-content').html(content);
           $('.talkPicture').leanModal({top: 200, overlay: 0.6, closeButton: ".modal_close"});
@@ -366,10 +365,10 @@ $(document).ready(function(){
       });
     }
   }
-  
+
   $('select[id="select_category"]').prop('selectedIndex', 0);
   $('select[id="select_location"]').prop('selectedIndex', 0);
-  
+
   $('select[id="select_category"]').change(function(){
     $('select[id="select_category"] option:selected').each(function(){
       category_type = $(this).text();
@@ -410,10 +409,6 @@ $(document).ready(function(){
       }
     }
   });
-  $('.btn-vote').click(function(){
-
-  });
-
   // $('#search').click(function(){
   //   $('#QQ').show();
   //   $.post('/show',{
@@ -450,7 +445,7 @@ $(document).ready(function(){
   //   console.log('id: ' + prev.attr('talk_id'));
   //   $('.dialog1').find('h3').val(prev.find('.talkTitle').text());
   //   $('.dialog1 .caption p').val(prev.find('.talkSpeaker').text());
-  //   $('.dialog1').dialog('open');  
+  //   $('.dialog1').dialog('open');
   // });
-  
+
 });
