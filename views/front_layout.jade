@@ -66,7 +66,7 @@ html
             - if (!user)
               li
 
-                fb:login-button(scope='public_profile, email', onlogin='checkLoginState();')
+                fb:login-button(id='login', scope='public_profile, email', onlogin='checkLoginState();')
                 a(id='username', href='')
             - else
               li
@@ -83,30 +83,30 @@ html
               .loadIndicator
                 .indicator
               .flow
-                //- .item
-                //-   img.content(src="https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg")
-                //-   .caption selectButton
-                //- .item
-                //-   img.content(src="https://dl.dropboxusercontent.com/u/79375953/Photo%2012-10-4%20%E4%B8%8B%E5%8D%884%2057%2032.jpg")
-                //-   .caption remove
-                //- .item
-                //-   img.content(src="https://dl.dropboxusercontent.com/u/79375953/Folder.jpg")
-                //-   .caption recovery-recovery
-                //- .item
-                //-   img.content(src="http://images.jrj.com.cn/2009/04/20090407130620812.jpg")
-                //-   .caption takeButton
-                //- .item
-                //-   img.content(src="http://www.planeboy.net/wp-content/uploads/2010/05/jobs.jpg")
-                //-   .caption takeButton
-                //- .item
-                //-   img.content(src="http://photocdn.sohu.com/20080409/Img256185997.jpg")
-                //-   .caption takeButton
-                //- .item
-                //-   img.content(src="http://a1.att.hudong.com/53/61/01000000000000119086153649953.jpg")
-                //-   .caption takeButton
-                //- .item
-                //-   img.content(src="http://image2.sina.com.cn/IT/it/2007-04-19/U1788P2T1D1474071F9DT20070419143346.jpg")
-                //-   .caption takeButton
+                .item
+                  img.content(src="https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg")
+                  .caption selectButton
+                .item
+                  img.content(src="https://dl.dropboxusercontent.com/u/79375953/Photo%2012-10-4%20%E4%B8%8B%E5%8D%884%2057%2032.jpg")
+                  .caption remove
+                .item
+                  img.content(src="https://dl.dropboxusercontent.com/u/79375953/Folder.jpg")
+                  .caption recovery-recovery
+                .item
+                  img.content(src="http://images.jrj.com.cn/2009/04/20090407130620812.jpg")
+                  .caption takeButton
+                .item
+                  img.content(src="http://www.planeboy.net/wp-content/uploads/2010/05/jobs.jpg")
+                  .caption takeButton
+                .item
+                  img.content(src="http://photocdn.sohu.com/20080409/Img256185997.jpg")
+                  .caption takeButton
+                .item
+                  img.content(src="http://a1.att.hudong.com/53/61/01000000000000119086153649953.jpg")
+                  .caption takeButton
+                .item
+                  img.content(src="http://image2.sina.com.cn/IT/it/2007-04-19/U1788P2T1D1474071F9DT20070419143346.jpg")
+                  .caption takeButton
               .globalCaption
               .scrollbar
                 .slider
@@ -144,7 +144,6 @@ html
             h3#detail-topic 演講主題：
             h3#detail-dest 演講地點：
             h3#detail-info 演講資訊：
-            span fuck fuck fuck
             button.btn-vote.btn.btn-info(type='button') Vote
     section#profile
       .row
