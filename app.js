@@ -41,6 +41,7 @@ app.post('/search', talk.search);
 
 //add the url of your function
 app.post('/show', talk.show);
+app.get('/showhot', talk.showhot);
 app.post('/vote', talk.update);
 app.post('/showProfile', talk.list);
 
