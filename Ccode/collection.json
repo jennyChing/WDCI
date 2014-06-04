@@ -132,3 +132,91 @@
     "_id" : ObjectId("538a077c146225689400c3c3"),
     "vote" : { "num" : 0, "voter_id" : [ ] }, "__v" : 0
 }
+{
+    "host_id" : "689796801061456",
+    "topic" : "【熱門心理學講座】溝通和你想的不一樣",
+    "speaker" : "裘凱宇",
+    "category" : "其他",
+    "location":"北部",
+    "description" : "你想知道自己的【臉部表情】、【說話方式】、【肢體行為】，在溝通表達時是如何幫助你或扯你後腿的嗎？心理學溝通專家~裘凱宇將在這場講座中，將讓你徹底了解溝通的核心關鍵，",
+    "imageURL" : "/public/img/commu.jpg",
+    "_id" : ObjectId("538a077c146225689400c3c4"),
+    "vote" : { "num" : 0, "voter_id" : [ ] }, "__v" : 0
+}
+{
+    "host_id" : "689796801061456",
+    "topic" : "2014亞洲音樂劇研習營",
+    "speaker" : "Shuwen Hsieh謝淑文",
+    "category" : "其他",
+    "location":"北部",
+    "description" : "不用出國，就能與百老匯大師近身學習，名師來台親自指導，實際體驗百老匯劇場演員徵選過程兩階段付款，讓音樂劇夢想垂手可得！",
+    "imageURL" : "/public/img/music.jpg",
+    "_id" : ObjectId("538a077c146225689400c3c5"),
+    "vote" : { "num" : 0, "voter_id" : [ ] }, "__v" : 0
+}
+{
+    "host_id" : "689796801061456",
+    "topic" : "【Design+設計小聚】社群時代──從經營品牌到經營社群",
+    "speaker" : "熊傳慧",
+    "category" : "其他",
+    "location":"中部",
+    "description" : "【Design 設計小聚】是《Shopping Design》在2013年對自己、對台灣新的許諾與行動。我們期許這是一個新型態的設計社群，讓台灣所有投身設計領域與關心設計商業發展的人，都可以在這個場域與聚會中，對design有更多的理解和對話、更多跨界的交流、更多延展的探索與發現。",
+    "imageURL" : "/public/img/designe.jpg",
+    "_id" : ObjectId("538a077c146225689400c3c6"),
+    "vote" : { "num" : 0, "voter_id" : [ ] }, "__v" : 0
+}
+{
+    "host_id" : "689796801061456",
+    "topic" : "日式愛心便當料理課",
+    "speaker" : "阿德老師",
+    "category" : "生活",
+    "location":"南部",
+    "description" : "從佃煮到鹽烤、漬物、炊飯，所有日式便當中會使用到的烹調技巧皆會一一使用到五目炊飯、糖心蛋、烤扇貝、鹽烤鯖魚、無添加漬物......最後再綁上可愛的便當布巾，就是愛心滿滿的健康便當囉!",
+    "imageURL" : "/public/img/cook.jpg",
+    "_id" : ObjectId("538a077c146225689400c3c7"),
+    "vote" : { "num" : 0, "voter_id" : [ ] }, "__v" : 0
+}
+{
+    "host_id" : "689796801061456",
+    "topic" : "五感藝術-夏日写真小旅行",
+    "speaker" : "陳應欽",
+    "category" : "生活",
+    "location":"南部",
+    "description" : "春暖花開五月天，萬物欣欣向榮，正是戶外踏青、感受春光明媚的季節，跟著專業攝影達人，一同學習使用簡單器材也能拍出好照片的要訣。搭配投影實例作品，帶領學員進行攝影之專業養成訓練。",
+    "imageURL" : "/public/img/art.jpg",
+    "_id" : ObjectId("538a077c146225689400c3c8"),
+    "vote" : { "num" : 0, "voter_id" : [ ] }, "__v" : 0
+}
+{
+    "host_id" : "689796801061456",
+    "topic" : "五感藝術-夏日写真小旅行",
+    "speaker" : "陳應欽",
+    "category" : "生活",
+    "location":"南部",
+    "description" : "春暖花開五月天，萬物欣欣向榮，正是戶外踏青、感受春光明媚的季節，跟著專業攝影達人，一同學習使用簡單器材也能拍出好照片的要訣。搭配投影實例作品，帶領學員進行攝影之專業養成訓練。",
+    "imageURL" : "/public/img/art.jpg",
+    "_id" : ObjectId("538a077c146225689400c3c8"),
+    "vote" : { "num" : 0, "voter_id" : [ ] }, "__v" : 0
+}
+{
+    "host_id" : "689796801061456",
+    "topic" : "「五倍紅寶石」 Ruby/Rails 課程說明會",
+    "speaker" : "陳應欽",
+    "category" : "科技",
+    "location":"南部",
+    "description" : "「五倍紅寶石」是由幾位台灣 Ruby 社群的朋友共同成立的一家公司，希望可以透過藉由教育訓練、企業培訓等課程，將 Ruby 推廣給更多的企業、開發者。",
+    "imageURL" : "/public/img/ruby.jpg",
+    "_id" : ObjectId("538a077c146225689400c3c9"),
+    "vote" : { "num" : 0, "voter_id" : [ ] }, "__v" : 0
+}
+{
+    "host_id" : "689796801061456",
+    "topic" : "中東阿酋空姐來說「我如何輕鬆考上空服員」",
+    "speaker" : "小紅老師,Kathy",
+    "category" : "其他",
+    "location":"南部",
+    "description" : "1) 如何前進中東阿酋航空工作│過五關斬六將 通過面試徵選2) 台灣人如何獨立在外站生活3) 談國外夢幻城市及空服員理財",
+    "imageURL" : "/public/img/fly.jpg",
+    "_id" : ObjectId("538a077c146225689400c3c9"),
+    "vote" : { "num" : 0, "voter_id" : [ ] }, "__v" : 0
+}
