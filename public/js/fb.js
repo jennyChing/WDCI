@@ -31,7 +31,7 @@ function checkLoginState() {
 
 window.fbAsyncInit = function() {
 FB.init({
-  appId      :'739242972804853',
+  appId      :'727209207341563', //local test use: 739242972804853
   cookie     : true,  // enable cookies to allow the server to access
                       // the session
   xfbml      : true,  // parse social plugins on this page
@@ -236,24 +236,28 @@ $(document).ready(function(){
     }
   }
   function showDetail(){
+    console.log('show detail');
     var count = $('.talk-detail #detail-topic').text().split('：');
-    console.log('c: '+count.length);
-    if(count[1].length === 0){
+    //console.log('c: '+count.length);
+    var speaker_title = '演講者：';
+    var topic_title = '演講主題：';
+    var loc_title = '演講地點：';
+    var info_title = '演講資訊：';
       $('#talk-image-img').attr('src', $(this).find('img').attr('src'));
       $('.btn-vote').attr('talk_id', $(this).attr('talk_id'));
-      var topic_text = $('.talk-detail #detail-topic').text(); 
-      topic_text += $(this).find('.talkTitle').text();
+      //var topic_text = $('.talk-detail #detail-topic').text(); 
+      var topic_text = topic_title + $(this).find('.talkTitle').text();
       $('.talk-detail #detail-topic').text(topic_text);
-      var speaker_text = $('.talk-detail #detail-speaker').text(); 
-      speaker_text += $(this).find('.talkSpeaker').text();
+      //var speaker_text = $('.talk-detail #detail-speaker').text(); 
+      var speaker_text = speaker_title + $(this).find('.talkSpeaker').text();
       $('.talk-detail #detail-speaker').text(speaker_text);
-      var location_text = $('.talk-detail #detail-dest').text();
-      location_text += $(this).find('.talkTitle').attr('location');
+      //var location_text = $('.talk-detail #detail-dest').text();
+      var location_text = loc_title + $(this).find('.talkTitle').attr('location');
       $('.talk-detail #detail-dest').text(location_text);
-      var info_text = $('.talk-detail #detail-info').text();
-      info_text += $(this).find('.talkSpeaker').attr('info');
+      //var info_text = $('.talk-detail #detail-info').text();
+      var info_text = info_title + $(this).find('.talkSpeaker').attr('info');
       $('.talk-detail #detail-info').text(info_text);
-    }
+    //}
   }
 
 
@@ -285,25 +289,22 @@ $(document).ready(function(){
   }
   function showDetail_v2(){
     console.log('v2 v2');
-    var count = $('.talk-detail #detail-topic').text().split('：');
-    console.log('c: '+count.length);
-    if(count[1].length === 0){
-      $('#talk-image-img').attr('src', $(this).find('canvas').attr('src'));
-      $('.btn-vote').attr('talk_id', $(this).attr('talk_id'));
-      var result = $(this).find('.caption').text().split('\n');
-      var topic_text = $('.talk-detail #detail-topic').text(); 
-      topic_text += result[0];
-      $('.talk-detail #detail-topic').text(topic_text);
-      var speaker_text = $('.talk-detail #detail-speaker').text(); 
-      speaker_text += result[1];
-      $('.talk-detail #detail-speaker').text(speaker_text);
-      var location_text = $('.talk-detail #detail-dest').text();
-      location_text += result[2];
-      $('.talk-detail #detail-dest').text(location_text);
-      var info_text = $('.talk-detail #detail-info').text();
-      info_text += $(this).find('.caption').attr('info');
-      $('.talk-detail #detail-info').text(info_text);
-    }
+    //console.log('c: '+count.length);
+    var speaker_title = '演講者：';
+    var topic_title = '演講主題：';
+    var loc_title = '演講地點：';
+    var info_title = '演講資訊：';
+    var result = $(this).find('.caption').text().split('\n');
+    $('#talk-image-img').attr('src', $(this).find('canvas').attr('src'));
+    $('.btn-vote').attr('talk_id', $(this).attr('talk_id'));
+    var topic_text = topic_title + result[0];
+    $('.talk-detail #detail-topic').text(topic_text); 
+    var speaker_text = speaker_title + result[1];
+    $('.talk-detail #detail-speaker').text(speaker_text);
+    var location_text = loc_title + result[2];
+    $('.talk-detail #detail-dest').text(location_text);
+    var info_text = info_title + $(this).find('.caption').attr('info');
+    $('.talk-detail #detail-info').text(info_text);
   }
 
   function refreshHot(){
@@ -406,8 +407,10 @@ $(document).ready(function(){
           imageURL: image_url,
           location: location_type
         }, function(msg){
-          alert('感謝您，已加入！')
+          //alert('感謝您，已加入！')
           refreshProfile();
+          refreshHot();
+          refreshCatergory();
           console.log(topic);
         });
       }
