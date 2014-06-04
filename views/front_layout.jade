@@ -62,9 +62,8 @@ html
 
             - if (!user)
               li
-                fb:login-button(id='login',scope='public_profile, email', onlogin='checkLoginState();')
-                a(id='username', href='')
-                //button#modal_trigger.btn.btn-info.btn-login(href='#modal', type='button') 登入
+                //fb:login-button(scope='public_profile, email', onlogin='checkLoginState();')
+                button#modal_trigger.btn.btn-info.btn-login(href='#modal', type='button') 登入
                 //-a(href='/#login') 登入管理
               li
                 //- p=#{localStorage.user_name}
@@ -164,33 +163,33 @@ html
         //-     .slider
         //-       .position
 
-    //- section#hot
-    //-   .row
-    //-     header
-    //-       h1 What is hot now?
-    //-       h4 熱門的講座
-    //-     .column.medium-12.small-10.small-centered(style="margin-top:20px;")
-    //-       .talkPicture
-    //-         img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
-    //-         .talkTitle
-    //-           東方神祕力量
-    //-         .talkSpeaker 李嗣涔
-    //-         button.btn.btn-info(, type='button') Vote
-    //-         .talkNumberOfVotes 1234
+    section#hot
+      .row
+        header
+          h1 What is hot now?
+          h4 熱門的講座
+        .column.medium-12.small-10.small-centered(style="margin-top:20px;")
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
+            .talkTitle
+              東方神祕力量
+            .talkSpeaker 李嗣涔
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 1234
 
-    //-       .talkPicture
-    //-         img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
-    //-         .talkTitle What is Hackathon?
-    //-         .talkSpeaker 金子芮
-    //-         button.btn.btn-info(, type='button') Vote
-    //-         .talkNumberOfVotes 38419
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
+            .talkTitle What is Hackathon?
+            .talkSpeaker 金子芮
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 38419
 
-    //-       .talkPicture
-    //-         img(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
-    //-         .talkTitle 第一次打政府臉就上手
-    //-         .talkSpeaker 童盈超
-    //-         button.btn.btn-info(, type='button') Vote
-    //-         .talkNumberOfVotes 68264
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
+            .talkTitle 第一次打政府臉就上手
+            .talkSpeaker 童盈超
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 68264
 
     div#container
       div#modal.popupContainer(style='display:none;')
@@ -220,7 +219,7 @@ html
             h3#detail-topic 演講主題：
             h3#detail-dest 演講地點：
             h3#detail-info 演講資訊：
-            //span fuck fuck fuck
+            span fuck fuck fuck
             button.btn-vote.btn.btn-info(type='button') Vote
     section#profile
       .row
@@ -269,7 +268,6 @@ html
       //-   button.btn.btn-info(style='left: 34%;', type='button') Vote
       //-   div(style='text-align: center; padding-top: 10px;') 999999
     section#faq.black
-
       .row
         header
           h1 Create your own talks
@@ -300,31 +298,31 @@ html
             #base
             input#submit.button.radius(style='text-align:center;',type='button', value='提交', tabindex='3')
 
-      //- .row
-      //-   header
-      //-     h1 What is hot now?
-      //-     h4 熱門的講座
-      //-   .column.medium-12.small-10.small-centered(style="margin-top:20px;")
-      //-     .talkPicture
-      //-       img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
-      //-       .talkTitle 東方神祕力量
-      //-       .talkSpeaker 李嗣涔
-      //-       button.btn.btn-info(, type='button') Vote
-      //-       .talkNumberOfVotes 1234
+      .row
+        header
+          h1 What is hot now?
+          h4 熱門的講座
+        .column.medium-12.small-10.small-centered(style="margin-top:20px;")
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
+            .talkTitle 東方神祕力量
+            .talkSpeaker 李嗣涔
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 1234
 
-      //-     .talkPicture
-      //-       img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
-      //-       .talkTitle What is Hackathon?
-      //-       .talkSpeaker 金子芮
-      //-       button.btn.btn-info(, type='button') Vote
-      //-       .talkNumberOfVotes 38419
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
+            .talkTitle What is Hackathon?
+            .talkSpeaker 金子芮
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 38419
 
-      //-     .talkPicture
-      //-       img(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
-      //-       .talkTitle 第一次打政府臉就上手
-      //-       .talkSpeaker 童盈超
-      //-       button.btn.btn-info(, type='button') Vote
-      //-       .talkNumberOfVotes 68264
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
+            .talkTitle 第一次打政府臉就上手
+            .talkSpeaker 童盈超
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 68264
 
     section#category
       .row
@@ -341,26 +339,37 @@ html
           .progress-bar(role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%")
             span.sr-only 45% Complete
         #talk-content
-        //-   .talkPicture
-        //-     img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
-        //-     .talkTitle 東方神祕力量
-        //-     .talkSpeaker 李嗣涔
-        //-     button.btn.btn-info(, type='button') Vote
-        //-     .talkNumberOfVotes 1234
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
+            .talkTitle 東方神祕力量
+            .talkSpeaker 李嗣涔
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 1234
 
-        //-   .talkPicture
-        //-     img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
-        //-     .talkTitle What is Hackathon?
-        //-     .talkSpeaker 金子芮
-        //-     button.btn.btn-info(, type='button') Vote
-        //-     .talkNumberOfVotes 38419
+          .talkPicture
+            img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
+            .talkTitle What is Hackathon?
+            .talkSpeaker 金子芮
+            button.btn.btn-info(, type='button') Vote
+            .talkNumberOfVotes 38419
 
-        //- .talkPicture
-        //-   img.open1(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
-        //-   .talkTitle 第一次打政府臉就上手
-        //-   .talkSpeaker 童盈超
-        //-   button.btn.btn-info(, type='button') Vote
-        //-   .talkNumberOfVotes 68264
+        .talkPicture
+          img.open1(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
+          .talkTitle 第一次打政府臉就上手
+          .talkSpeaker 童盈超
+          button.btn.btn-info(, type='button') Vote
+          .talkNumberOfVotes 68264
+
+        .dialog1
+          .thumbnail
+            img(style="text-align:center;border-radius:70px;width:200px;height:200px;" src="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xpa1/t1.0-9/72807_736689643016995_772469513_n.jpg")
+            .caption(style="text-align:center;")
+              h3 第一次打政府臉就上手
+              p 這場演講會請到有名的阿超老師來示範，如何打臉。
+            img(style="text-align:center;border-radius:30px;width:500px;height:300px;" src="http://images.takungpao.com/2014/0329/20140329031758803.jpg" alt="haha")
+            p(style="text-align:center;")
+              a.btn.btn-primary#voteButton(style="width:100px;" role="button" ) 我要投票！
+
 
       //- .wahaButton
       //-   button.btn.btn-default(style="width:120px;") toggleTest
