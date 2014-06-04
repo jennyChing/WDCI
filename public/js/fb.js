@@ -129,6 +129,7 @@ $(document).ready(function(){
         if(response.message === 'ok'){
           response.result.forEach(function(element, index, array){
             console.log('index: ' + index + ' data:' + element.topic);
+            element.vote.num = element.vote.voter_id.length;
             content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
               + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
               + element.vote.num + '</div> </div> ';
@@ -227,6 +228,7 @@ $(document).ready(function(){
           refreshCatergory();
           refreshProfile();
           refreshHot();
+          $('.modal_close').trigger('click');
         }
       });
     }else{
@@ -270,6 +272,7 @@ $(document).ready(function(){
         if(response.message === 'ok'){
           response.result.forEach(function(element, index, array){
             console.log('index: ' + index + ' data:' + element.topic);
+            element.vote.num = element.vote.voter_id.length;
             content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
               + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
               + element.vote.num + '</div> </div> ';
@@ -352,7 +355,8 @@ $(document).ready(function(){
       }).done(function(response){
         if(response.message === 'ok'){
           response.result.forEach(function(element, index, array){
-            console.log('index: ' + index + ' data:' + element.topic);
+            console.log('index: ' + index + ' data:' + element.vote.voter_id);
+            element.vote.num = element.vote.voter_id.length;
             content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
               + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
               + element.vote.num + '</div> </div> ';

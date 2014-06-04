@@ -108,11 +108,11 @@ exports.showhot = function(req, res){
 
 exports.update = function(req, res){
 
-    console.log('req: ' + req.body);
+    //console.log('req: ' + req.body);
 
     Talk.update({_id: req.body.talk_id}, {$addToSet: {'vote.voter_id': req.body.voter_id}, $inc: {'vote.num': 1}},
         function(err, result){
-            //console.log('err:'+err);
+            console.log('err:'+err);
             if(err) return err;
             console.log('result: '+ JSON.stringify(result));
             if(result > 0){
