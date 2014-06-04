@@ -99,7 +99,7 @@ function getUserName(){
 }
 
 
-$(document).ready(function(){ 
+$(document).ready(function(){
   var topic = '';
   var speaker = '';
   var talk_id = '';
@@ -129,7 +129,7 @@ $(document).ready(function(){
             console.log('index: ' + index + ' data:' + element.topic);
             content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
               + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
-              + element.vote.num + '</div> </div> '; 
+              + element.vote.num + '</div> </div> ';
           });
           $('#talk-content').html(content);
           $('.talkPicture').leanModal({top: 200, overlay: 0.6, closeButton: ".modal_close"});
@@ -187,7 +187,7 @@ $(document).ready(function(){
             //$(this).dialog('close');
             console.log('vote ok');
             refreshCatergory();
-          }  
+          }
         });
         $(this).dialog('close');
       }
@@ -204,10 +204,10 @@ $(document).ready(function(){
   function showDetail(){
     $('#talk-image-img').attr('src', $(this).find('img').attr('src'));
     $('.btn-vote').attr('talk_id', $(this).attr('talk_id'));
-    var topic_text = $('.talk-detail #detail-topic').text(); 
+    var topic_text = $('.talk-detail #detail-topic').text();
     topic_text += $(this).find('.talkTitle').text();
     $('.talk-detail #detail-topic').text(topic_text);
-    var speaker_text = $('.talk-detail #detail-speaker').text(); 
+    var speaker_text = $('.talk-detail #detail-speaker').text();
     speaker_text += $(this).find('.talkSpeaker').text();
     $('.talk-detail #detail-speaker').text(speaker_text);
     var location_text = $('.talk-detail #detail-dest').text();
@@ -219,7 +219,7 @@ $(document).ready(function(){
 
   }
   function refreshCatergory(){
-    if(type.length !== 0){ 
+    if(type.length !== 0){
       var category = { 'category' : type};
       var content = '';
       var image1 = '<img style="width:200px; height:200px;border-radius:30px;" src="';
@@ -235,7 +235,7 @@ $(document).ready(function(){
             console.log('index: ' + index + ' data:' + element.topic);
             content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
               + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
-              + element.vote.num + '</div> </div> '; 
+              + element.vote.num + '</div> </div> ';
           });
           $('#talk-content').html(content);
           $('.talkPicture').leanModal({top: 200, overlay: 0.6, closeButton: ".modal_close"});
@@ -264,7 +264,7 @@ $(document).ready(function(){
             console.log('index: ' + index + ' data:' + element.topic);
             content += '<div class="talkPicture" href="#show-detail" talk_id='+ element._id + '>' + image1 + element.imageURL + image2 + '<div class="talkTitle" location="' + element.location + '">' + element.topic
               + '</div><div class="talkSpeaker" info="'+ element.description +'">' + element.speaker + '</div><div class="talkNumberOfVotes">'
-              + element.vote.num + '</div> </div> '; 
+              + element.vote.num + '</div> </div> ';
           });
           $('#profile-content').html(content);
           $('.talkPicture').leanModal({top: 200, overlay: 0.6, closeButton: ".modal_close"});
@@ -274,10 +274,10 @@ $(document).ready(function(){
       });
     }
   }
-  
+
   $('select[id="select_category"]').prop('selectedIndex', 0);
   $('select[id="select_location"]').prop('selectedIndex', 0);
-  
+
   $('select[id="select_category"]').change(function(){
     $('select[id="select_category"] option:selected').each(function(){
       category_type = $(this).text();
@@ -316,13 +316,13 @@ $(document).ready(function(){
       });
     }
   });
-  $('#search').click(function(){
-    $('#QQ').show();
-    $.post('/show',{
-    }, function(res){
-      console.log('haha', res);
-    });
-  });
+  // $('#search').click(function(){
+  //   $('#QQ').show();
+  //   $.post('/show',{
+  //   }, function(res){
+  //     console.log('haha', res);
+  //   });
+  // });
   refreshProfile();
   $("#login_form").click(function(){
       $(".social_login").hide();
@@ -352,7 +352,7 @@ $(document).ready(function(){
   //   console.log('id: ' + prev.attr('talk_id'));
   //   $('.dialog1').find('h3').val(prev.find('.talkTitle').text());
   //   $('.dialog1 .caption p').val(prev.find('.talkSpeaker').text());
-  //   $('.dialog1').dialog('open');  
+  //   $('.dialog1').dialog('open');
   // });
-  
+
 });

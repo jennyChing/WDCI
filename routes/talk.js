@@ -119,7 +119,7 @@ exports.search = function(req, res){
      //        });
     var doc = [];
     //-mongo find and push to doc
-    var str = 'hack';
+    var str = req.body.talk;
     Talk.find( {$or : [{'topic' : str,
                         'speaker': str,
                         'description': str}], }, function (err, talk) {
