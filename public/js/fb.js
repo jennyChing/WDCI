@@ -313,13 +313,14 @@ $(document).ready(function(){
     var content_part1 = '<div class="item" href="#show-detail" talk_id="';
     var content_part1_1 = '"><img src="';
     var content_part2 = '" class="content"/><div class="caption" info="';
-    var content_part2_2 = '">';
+    var content_part2_2 = '" location="'+ this.location +'>';
     var content_part3 = '</div></div>';
     var caption_text = '';
     //var count = 0;
     //var hotData = [];
     $.getJSON('/showhot', function(data){
       //hotData = data;
+      console.log('hot hot hot');
       $.each(data, function(){
         console.log('topic: '+ this.topic + ', speaker: '+this.speaker);
         caption_text = this.topic + '\n' + this.speaker + '\n' + this.location; 
@@ -408,6 +409,10 @@ $(document).ready(function(){
           location: location_type
         }, function(msg){
           //alert('感謝您，已加入！')
+          $('#subForm input').val('');
+          $('#subForm img').attr('src', '');
+          $('select[id="select_category"]').prop('selectedIndex', 0);
+          $('select[id="select_location"]').prop('selectedIndex', 0);
           refreshProfile();
           refreshHot();
           refreshCatergory();
