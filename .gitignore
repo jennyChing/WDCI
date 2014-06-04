@@ -1,2 +1,4 @@
 node_modules/
 data/
+data/db/local.0
+data/db/local.ns
