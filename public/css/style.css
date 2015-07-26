@@ -1,3 +1,20 @@
+meta(charset='utf-8')
+    style
+      body {
+      font: 10px sans-serif;
+      }
+      .axis path,
+      .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+      }
+      .bar {
+      fill: steelblue;
+      }
+      .x.axis path {
+      display: none;
+      }
 .container {
   width: 100%;
   position: relative;
@@ -7,10 +24,10 @@ a {
   color: #39454B;
 }
 
-body h1, 
+body h1,
 body h2,
 body h3,
-body h4, 
+body h4,
 body p {
   color: #696969;
 }
@@ -80,7 +97,7 @@ body p {
   padding: 0;
   width: 100px;
 }
-/* 
+/*
  * content
  */
 
@@ -200,11 +217,11 @@ section {
     margin: 2% 5%;
     height: auto;
   }
-    
+
 }
 
 /*
- spinner 
+ spinner
  */
  #loading{
   position: absolute;
@@ -336,21 +353,21 @@ section {
 }
 
 .talkTitle{
-  text-align:center; 
-  font-size:16px; 
-  color:#5B5B5B;  
+  text-align:center;
+  font-size:16px;
+  color:#5B5B5B;
   padding-top:10px;
 }
 
 .talkSpeaker{
-  text-align:center; 
-  font-size:14px; 
-  color:gray;  
+  text-align:center;
+  font-size:14px;
+  color:gray;
   padding-top:10px;
 }
 
 .talkNumberOfVotes{
-  text-align: center; 
+  text-align: center;
   padding-top: 10px;
 }
 
@@ -360,7 +377,7 @@ section {
 
 .wid40{
   width: 100px;
-  margin:20px; 
+  margin:20px;
 }
 
 .wahaha{
@@ -377,7 +394,7 @@ section {
 }
 
 .talkPicture img{
-  width:200px; 
+  width:200px;
   height:200px;
   border-radius:30px;
 }
@@ -443,14 +460,14 @@ a.btn_red {color: #FFF;}
 .popupHeader {font-size:16px; text-transform: uppercase;}
 .popupHeader {background:#F4F4F2; position:relative; padding:10px 20px; border-bottom:1px solid #DDD; font-weight:bold;}
 .popupHeader .modal_close {
-  position: absolute; 
-  right: 0; 
-  top:0; 
-  padding:0px; 
+  position: absolute;
+  right: 0;
+  top:0;
+  padding:0px;
   background:#E4E4E2;
-  cursor: pointer; 
-  /*color:#aaa;*/ 
-  font-size:16px; 
+  cursor: pointer;
+  /*color:#aaa;*/
+  font-size:16px;
   /*background-image: url(../images/close-button.png);*/
 }
 .popupHeader .modal_close img{
@@ -471,7 +488,7 @@ a.btn_red {color: #FFF;}
 /* Social Login Form */
 .social_login {}
 .social_login .social_box {display:block; clear:both; padding:10px; margin-bottom: 10px; background: #F4F4F2; overflow: hidden;}
-.social_login .icon {display:block; width:10px; padding:5px 10px; margin-right: 10px; float:left; color:#FFF; font-size:16px; text-align: center;} 
+.social_login .icon {display:block; width:10px; padding:5px 10px; margin-right: 10px; float:left; color:#FFF; font-size:16px; text-align: center;}
 .social_login .fb .icon {background:#3B5998;}
 .social_login .google .icon {background:#DD4B39;}
 .social_login .icon_title {display:block; padding:5px 0; float:left; font-weight: bold; font-size: 16px; color:#777;}
