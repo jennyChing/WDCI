@@ -10,7 +10,7 @@ var lunr = require('lunr');
 //mongoose
 
 
-//create schema
+//create schema, device
 var TalkSchema = new Schema({
 
     id: { type: String},
