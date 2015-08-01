@@ -224,6 +224,59 @@ html
             h3#detail-dest 演講地點：
             h3#detail-info 演講資訊：
             button.btn-vote.btn.btn-info(type='button') Vote
+    section#faq.black
+      .row
+        header
+          h1 Connect your own devices
+          h4 Connect the data on your devices and add them to your control list
+        .column.medium-8.small-10.small-centered
+          form#subForm.sign-up-form.clearfix
+            script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js')
+                script.
+                  $('body').on('click','#search',function(e){
+                    e.preventDefault();
+                    var domain = $('#domain').val();
+
+                    $.post("query/getQry",{
+                      domain: domain
+                    },function(msg){
+                      console.log( "Data Saved: " + msg);
+                      $('#response').html(msg);
+                      if(msg.toString="5 IP Adderss prohibited"){
+                      $('#response').html("抱歉您查詢的網域已使用");
+
+                      }else{
+                      //$(".alert").alert("您查詢的網域目前無人使用")
+                      $('#response').html("您查詢的網域目前無人使用");
+
+                      }
+                      });
+                  });
+                script.
+            input#topic(type='text', name='topic', placeholder='My device name')
+            input#speaker(type='text', name='speaker', placeholder='My device status')
+            //input#category(type='text', name='category', placeholder='Select type')
+            select(name='selectCategory', id='select_category')
+              option(value=' ' , selected='selected', disabled='disabled', id='placeholder') Select category
+              option(value='House') House
+              option(value='Office') Office
+              option(value='Others') Others
+            //-select(name='selectLocation', id='select_location')
+              option(value=' ' , selected='selected', disabled='disabled', id='placeholder') 選擇地區
+              option(value='科技') 北部
+              option(value='生活') 中部
+              option(value='其他') 南部
+            input#description(type='text', name='description', placeholder='Device info')
+            //-div.fileUpload.btn.btn-primary
+            //-  span 上傳
+            //-  input.upload#asd(type='file')
+            //-input#uploadFile(placeholder='圖片路徑', disabled='disabled')
+            //-img#img(src='')
+            //-div#drop-files(ondragover='return false')
+            //-  | 圖片預覽
+            #base
+            input#submit.button.radius(style='text-align:center;',type='button', value='Submit', tabindex='3')
+
     section#profile
       .row
         header
@@ -250,7 +303,7 @@ html
                 td
                   | Lamp
                 td
-                  a(href='') On
+                  a(href='') 1-On
                 td
                   a(href='') Edit
                 td
@@ -260,7 +313,7 @@ html
                td
                   | Macbook
                 td
-                  a(href='') Off
+                  a(href='') 2-Off
                 td
                   a(href='') Edit
                 td
@@ -283,77 +336,3 @@ html
       //-   div(style='text-align:center; font-size:16px; color:#5B5B5B;  padding-top:10px;') What is Hackathon?
       //-   button.btn.btn-info(style='left: 34%;', type='button') Vote
       //-   div(style='text-align: center; padding-top: 10px;') 999999
-    section#faq.black
-      .row
-        header
-          h1 Connect your own devices
-          h4 Connect the data on your devices and add them to your control list
-        .column.medium-8.small-10.small-centered
-          form#subForm.sign-up-form.clearfix
-            input#topic(type='text', name='topic', placeholder='My device name')
-            input#speaker(type='text', name='speaker', placeholder='My device status')
-            //input#category(type='text', name='category', placeholder='Select type')
-            select(name='selectCategory', id='select_category')
-              option(value=' ' , selected='selected', disabled='disabled', id='placeholder') Select category
-              option(value='House') House
-              option(value='Office') Office
-              option(value='Others') Others
-            //-select(name='selectLocation', id='select_location')
-              option(value=' ' , selected='selected', disabled='disabled', id='placeholder') 選擇地區
-              option(value='科技') 北部
-              option(value='生活') 中部
-              option(value='其他') 南部
-            input#description(type='text', name='description', placeholder='Device info')
-            //-div.fileUpload.btn.btn-primary
-            //-  span 上傳
-            //-  input.upload#asd(type='file')
-            //-input#uploadFile(placeholder='圖片路徑', disabled='disabled')
-            //-img#img(src='')
-            //-div#drop-files(ondragover='return false')
-            //-  | 圖片預覽
-            #base
-            input#submit.button.radius(style='text-align:center;',type='button', value='Submit', tabindex='3')
-
-          //- .talkPicture
-          //-   img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
-          //-   .talkTitle
-          //-     東方神祕力量
-          //-   .talkSpeaker 李嗣涔
-          //-   button.btn.btn-info(, type='button') Vote
-          //-   .talkNumberOfVotes 1234
-
-          //- .talkPicture
-          //-   img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
-          //-   .talkTitle What is Hackathon?
-          //-   .talkSpeaker 金子芮
-          //-   button.btn.btn-info(, type='button') Vote
-          //-   .talkNumberOfVotes 38419
-
-          //- .talkPicture
-          //-   img(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
-          //-   .talkTitle 第一次打政府臉就上手
-          //-   .talkSpeaker 童盈超
-          //-   button.btn.btn-info(, type='button') Vote
-          //-   .talkNumberOfVotes 68264
-
-
- //- .talkPicture
- //-            img(style='width:200px; height:200px;border-radius:30px;', src='http://i1.ytimg.com/vi/DzIYaxqFIJ0/hqdefault.jpg',alt='hello!' class='img-rounded;').
- //-            .talkTitle 東方神祕力量
- //-            .talkSpeaker 李嗣涔
- //-            button.btn.btn-info(, type='button') Vote
- //-            .talkNumberOfVotes 1234
-
- //-          .talkPicture
- //-            img(style='width:200px; height:200px;border-radius:30px;', src='http://www.hotstudio.com/sites/default/files/hwt_blog_hackathon_0.png',alt='hello!' class='img-rounded;').
- //-            .talkTitle What is Hackathon?
- //-            .talkSpeaker 金子芮
- //-            button.btn.btn-info(, type='button') Vote
- //-            .talkNumberOfVotes 38419
-
- //-        .talkPicture
- //-          img.open1(style='width:200px; height:200px;border-radius:30px;', src='https://dl.dropboxusercontent.com/u/79375953/pictureForWeb/180327033345.jpg',alt='hello!' class='img-rounded;').
- //-          .talkTitle 第一次打政府臉就上手
- //-          .talkSpeaker 童盈超
- //-          button.btn.btn-info(, type='button') Vote
- //-          .talkNumberOfVotes 68264
