@@ -14,18 +14,11 @@ var lunr = require('lunr');
 var TalkSchema = new Schema({
 
     id: { type: String},
-    host_id: {type: String, required: true},
-    topic: { type: String, required: true},
-    status: { type: Boolean},
-    speaker: { type: String, required: true},
-    category: { type: String, required: true},
-    description: { type: String, required: true},
-    vote: {
-        num: {type: Number, required: true},
-        voter_id: [String]
-    },
-    imageURL: { type: String},
-    location: { type: String}
+    host_id: {type: String},
+    name: { type: String, required: true},
+    category: { type: Boolean},
+    description: { type: String, required: false},
+
 });
 //create a model
 var Talk = mongoose.model('Talk', TalkSchema);
@@ -57,13 +50,8 @@ exports.create = function(req, res) {
     console.log('created');
     var talk = new Talk({
         host_id: req.body.host_id,
-        topic: req.body.topic,
-        speaker: req.body.speaker,
-        location: req.body.locaiton,
+        name: req.body.name,
         category: req.body.category,
-        vote: {num: 0, voter_id:[]},
-        description: req.body.description,
-        imageURL: req.body.imageURL,
     });
     talk.save(function (err, data){
         if(err) {
@@ -103,7 +91,7 @@ exports.showhot = function(req, res){
         console.log(err);
         console.log(items);
         res.send(items);
-    })
+    });
 };
 
 exports.update = function(req, res){

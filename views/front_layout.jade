@@ -232,13 +232,16 @@ html
         .column.medium-8.small-10.small-centered
           form#subForm.sign-up-form.clearfix
             script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js')
-                script.
-                  $('body').on('click','#search',function(e){
+            script.
+                  $('body').on('click','#submit',function(e){
                     e.preventDefault();
-                    var domain = $('#domain').val();
+                    var name = $('#name').val();
+                    var status = $('#status').val();
+                    //var category
 
-                    $.post("query/getQry",{
-                      domain: domain
+                    $.post("createTalk",{
+                      name: name
+                      status: status
                     },function(msg){
                       console.log( "Data Saved: " + msg);
                       $('#response').html(msg);
@@ -252,9 +255,10 @@ html
                       }
                       });
                   });
-                script.
-            input#topic(type='text', name='topic', placeholder='My device name')
-            input#speaker(type='text', name='speaker', placeholder='My device status')
+            script.
+            p#response
+            input#name(type='text', name='name', placeholder='My device name')
+            input#status(type='text', name='status', placeholder='My device status')
             //input#category(type='text', name='category', placeholder='Select type')
             select(name='selectCategory', id='select_category')
               option(value=' ' , selected='selected', disabled='disabled', id='placeholder') Select category
@@ -266,7 +270,7 @@ html
               option(value='科技') 北部
               option(value='生活') 中部
               option(value='其他') 南部
-            input#description(type='text', name='description', placeholder='Device info')
+            //-input#description(type='text', name='description', placeholder='Device info')
             //-div.fileUpload.btn.btn-primary
             //-  span 上傳
             //-  input.upload#asd(type='file')
@@ -275,9 +279,10 @@ html
             //-div#drop-files(ondragover='return false')
             //-  | 圖片預覽
             #base
-            input#submit.button.radius(style='text-align:center;',type='button', value='Submit', tabindex='3')
+            input#submit.button.radius(style='text-align:center;',type='submit', value='Submit', tabindex='3')
 
     section#profile
+      //- Show profile if user log in
       .row
         header
           h1.span.glyphicon.glyphicon-thumbs-up
@@ -295,7 +300,7 @@ html
                 th
                   | Status
                 th
-                  | Edit info
+                  | Category
                 th
                   | Delete
             tbody
@@ -305,7 +310,7 @@ html
                 td
                   a(href='') 1-On
                 td
-                  a(href='') Edit
+                  a(href='') Category
                 td
                   a(href='') Delete
 
@@ -315,7 +320,7 @@ html
                 td
                   a(href='') 2-Off
                 td
-                  a(href='') Edit
+                  a(href='') Category
                 td
                   a(href='') Delete
 
