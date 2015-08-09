@@ -258,13 +258,26 @@ html
             script.
             p#response
             input#name(type='text', name='name', placeholder='My device name')
-            input#status(type='text', name='status', placeholder='My device status')
-            //input#category(type='text', name='category', placeholder='Select type')
             select(name='selectCategory', id='select_category')
               option(value=' ' , selected='selected', disabled='disabled', id='placeholder') Select category
-              option(value='House') House
-              option(value='Office') Office
-              option(value='Others') Others
+              option(value='Light') Light
+              option(value='Rice Cooker') Rice Cooker
+              option(value='Air Condition') Air Condition
+            //- show different selections for modules
+            select(name='selectStatus', id='select_status')
+              option(value=' ' , selected='selected', disabled='disabled', id='lightOption') Select status
+              option(value='0') Off
+              option(value='1') On
+              option(value='2') Other
+              #lightHere
+            script.
+              if($('select_category').val() == "Light")
+                $('#lightHere').show('lightOption')
+
+              else
+            script.
+            //-input#status(type='text', name='status', placeholder='My device status')
+            //-input#category(type='text', name='category', placeholder='Select type')
             //-select(name='selectLocation', id='select_location')
               option(value=' ' , selected='selected', disabled='disabled', id='placeholder') 選擇地區
               option(value='科技') 北部
