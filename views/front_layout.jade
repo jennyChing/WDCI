@@ -263,17 +263,36 @@ html
               option(value='Light') Light
               option(value='Rice Cooker') Rice Cooker
               option(value='Air Condition') Air Condition
-            //- show different selections for modules
-            select(name='selectStatus', id='select_status')
-              option(value=' ' , selected='selected', disabled='disabled', id='lightOption') Select status
-              option(value='0') Off
-              option(value='1') On
-              option(value='2') Other
-              #lightHere
-            script.
-              if($('select_category').val() == "Light")
-                $('#lightHere').show('lightOption')
 
+            //- show different selections for modules
+            //-if select_category.option === Light
+            select(name='selectStatus', id='select_status')
+                option(value=' ' , selected='selected', disabled='disabled', id='lightOption') Select status
+                option(value='0') Off
+                option(value='1') On
+                option(value='2') Other
+            //-if select_category.option === Rice Cooker
+              select(name='selectStatus', id='select_status')
+                option(value=' ' , selected='selected', disabled='disabled', id='lightOption') Select status
+                option(value='0') Off
+                option(value='1') On
+                option(value='time') Set cook time
+            //-if select_category.option === Air Condition
+              select(name='selectStatus', id='select_status')
+                option(value=' ' , selected='selected', disabled='disabled', id='lightOption') Select status
+                option(value='0') Off
+                option(value='1') On
+                option(value='2') Set temperature
+
+            script.
+              $('#select_status').hide();
+              $('#select_category').change(function () {
+                if($('Light').is(:selected)){
+                  $("#select_status").show();
+                }else{
+                  $("#select_status").hide();
+                }
+              });
               else
             script.
             //-input#status(type='text', name='status', placeholder='My device status')
