@@ -80,19 +80,6 @@ exports.show = function(req, res) {
     });
 };
 
-exports.showhot = function(req, res){
-    console.log('show hot');
-    Talk.find({}, null, {
-        limit: 8,
-        sort:{
-            'vote.num': -1
-        }
-    },function(err, items){
-        console.log(err);
-        console.log(items);
-        res.send(items);
-    });
-};
 
 exports.update = function(req, res){
 
