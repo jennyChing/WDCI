@@ -7,6 +7,7 @@ var path = require('path');
 var portNum = process.env.PORT || 5000;
 var mongo = require('mongoose');
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL;
+var passport = require('./node_modules/passport-facebook');
 //var db = mongo.db(mongoUri, {native_parser:true});
 var db = require('./db');
 var app = express();
@@ -36,6 +37,15 @@ if ('development' === app.get('env')) {
 app.get('/', index.load);
 app.post('/create', device.create);
 
+app.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 //app.post('/create', talk.create);
 //app.post('/createTalk', talk.create);
 // app.post('/update', talk.update);
