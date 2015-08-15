@@ -1,7 +1,7 @@
 var express = require('express');
 var routes = require('./routes');
 var index = require('./routes/index');
-var talk = require('./routes/talk');
+//var talk = require('./routes/talk');
 var http = require('http');
 var path = require('path');
 var portNum = process.env.PORT || 5000;
@@ -34,16 +34,16 @@ if ('development' === app.get('env')) {
 
 app.get('/', index.load);
 //app.post('/create', talk.create);
-app.post('/createTalk', talk.create);
+//app.post('/createTalk', talk.create);
 // app.post('/update', talk.update);
 
-app.post('/search', talk.search);
+//app.post('/search', talk.search);
 
 //add the url of your function
-app.post('/show', talk.show);
-app.get('/showhot', talk.showhot);
-app.post('/vote', talk.update);
-app.post('/showProfile', talk.list);
+//app.post('/show', talk.show);
+//app.get('/showhot', talk.showhot);
+//app.post('/vote', talk.update);
+//app.post('/showProfile', talk.list);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
