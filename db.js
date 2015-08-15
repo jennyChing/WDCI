@@ -17,4 +17,4 @@ mongoose.connection.once('open', function () {
 });
 
 // Require models schema, talk should be 'device'
-require('./routes/talk');
+require('./routes/device');

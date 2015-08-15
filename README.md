@@ -2,7 +2,7 @@
 TryTalk
 =======
 
-CCSP project 2014
+WDCI 2015
 =======
 # WDCI
 Wearable Digital Control Interface

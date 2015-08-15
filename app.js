@@ -1,7 +1,7 @@
 var express = require('express');
 var routes = require('./routes');
 var index = require('./routes/index');
-//var talk = require('./routes/talk');
+var device = require('./routes/device');
 var http = require('http');
 var path = require('path');
 var portNum = process.env.PORT || 5000;
@@ -12,6 +12,7 @@ var db = require('./db');
 var app = express();
 //mongo.connect(mongoUri, )
 
+mongo.connect('localhost', 'gettingstarted');
 // all environments
 
 app.set('port', portNum);
@@ -33,6 +34,8 @@ if ('development' === app.get('env')) {
 }
 
 app.get('/', index.load);
+app.post('/create', device.create);
+
 //app.post('/create', talk.create);
 //app.post('/createTalk', talk.create);
 // app.post('/update', talk.update);

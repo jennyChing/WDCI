@@ -1,24 +1,24 @@
 {
-  "name": "trytalk",
+  "name": "WDCI",
   "version": "0.0.0",
-  "description": "CCSP final project",
+  "description": "Wearable device control interface",
   "main": "index.js",
   "scripts": {
     "test": "Y"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jennyChing/TryTalk.git"
+    "url": "https://github.com/jennyChing/wdci.git"
   },
   "keywords": [
-    "tryTalk"
+    "wdci"
   ],
-  "author": "CCSP",
+  "author": "WDCI",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/jennyChing/TryTalk/issues"
+    "url": "https://github.com/jennyChing/wdci/issues"
   },
-  "homepage": "https://github.com/jennyChing/TryTalk",
+  "homepage": "https://github.com/jennyChing/wdci",
   "dependencies": {
     "express": "3.4.8",
     "jade": "*",
