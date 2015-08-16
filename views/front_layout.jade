@@ -235,17 +235,25 @@ html
             input#name(type='text', name='name', placeholder='My device name')
             select(name='selectCategory', id='select_category')
               option(value=' ' , selected='selected', disabled='disabled', id='placeholder') Select category
-              option(value='Light') Light
-              option(value='Rice Cooker') Rice Cooker
-              option(value='Air Condition') Air Condition
-
-            //- show different selections for modules
-            //-if select_category.option === Light
+              option(value='1') Light
+              option(value='2') Rice Cooker
+              option(value='3') Air Condition
             select(name='selectStatus', id='select_status')
                 option(value=' ' , selected='selected', disabled='disabled', id='lightOption') Select status
                 option(value='0') Off
                 option(value='1') On
                 option(value='2') Other
+
+            //- if ('#select_category'.value===2)
+              select(name='selectStatus', id='select_status')
+                option(value=' ' , selected='selected', disabled='disabled', id='lightOption') Select status
+                option(value='0') Off
+                option(value='1') On
+                option(value='2') time select
+            //-else
+            //- show different selections for modules
+            //-if select_category.option === Light
+
             //-if select_category.option === Rice Cooker
               select(name='selectStatus', id='select_status')
                 option(value=' ' , selected='selected', disabled='disabled', id='lightOption') Select status
@@ -276,22 +284,17 @@ html
                 },function(msg){
                   console.log( "Data Saved: " + msg);
                   $('#response').html(msg);
-                  //-if(msg.toString="5 IP Adderss prohibited"){
-                  //-$('#response').html("抱歉您查詢的網域已使用");
-
-                  //-}else{
-                  //$(".alert").alert("您查詢的網域目前無人使用")
                   $('#response').html("Your device is saved.");
 
                   }
               });
 
               $('#select_status').hide();
-              $('#select_category').change(function () {
-                if($('Light').is(:selected)){
-                  $("#select_status").show();
-                }else{
-                  $("#select_status").hide();
+
+              if('#select_category'.val()===2){
+                $("#select_status").hide();
+              }else{
+                $("#select_status").hide();
                 }
               });
               else
